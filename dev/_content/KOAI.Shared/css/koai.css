@@ -1,0 +1,5609 @@
+/* KOAI Design System — CSS tokens + component styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  --font-ui: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  --font-mono: "SF Mono", "Menlo", "Cascadia Code", monospace;
+
+  /* Type scale */
+  --text-caption2:    10px;
+  --text-caption:     12px;
+  --text-footnote:    13px;
+  --text-subheadline: 15px;
+  --text-body:        17px;
+  --text-callout:     16px;
+  --text-headline:    17px;
+  --text-title3:      20px;
+  --text-title2:      22px;
+  --text-title:       28px;
+
+  /* Font weights */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* Line heights */
+  --leading-tight:   1.2;
+  --leading-snug:    1.35;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+
+  /* Accent */
+  --color-accent:         #007AFF;
+  --color-accent-hover:   #0068E0;
+  --color-accent-subtle:  rgba(0, 122, 255, 0.16);
+  --color-accent-badge:   rgba(0, 122, 255, 0.15);
+
+  /* Status */
+  --color-running:        #007AFF;
+  --color-running-badge:  rgba(0, 122, 255, 0.15);
+  --color-done:           #34C759;
+  --color-done-badge:     rgba(52, 199, 89, 0.15);
+  --color-queued:         #FF9500;
+  --color-queued-badge:   rgba(255, 149, 0, 0.15);
+  --color-failed:         #FF3B30;
+  --color-failed-badge:   rgba(255, 59, 48, 0.15);
+  --color-paused:         #8E8E93;
+  --color-paused-badge:   rgba(142, 142, 147, 0.15);
+  --color-danger:         #FF3B30;
+
+  /* Surfaces */
+  --color-bg-window:    #1c1c1e;
+  --color-bg-sidebar:   #232325;
+  --color-bg-content:   #1c1c1e;
+  --color-bg-card:      rgba(142, 142, 147, 0.08);
+  --color-bg-grouped:   #2c2c2e;
+  --color-bg-input:     #3a3a3c;
+  --color-bg-hover:     rgba(255, 255, 255, 0.05);
+  --color-bg-selection: rgba(0, 122, 255, 0.16);
+  --color-bg-primary:   var(--color-bg-content);
+  --color-bg-tertiary:  var(--color-bg-grouped);
+  --color-surface-1:    var(--color-bg-card);
+  --color-surface-2:    var(--color-bg-grouped);
+  /* Two more steps of the same ladder, used for things that sit *on* a grouped
+     surface: 3 fills (code chips, badges, a progress track, a selected row), 4
+     outlines them and the small controls (radio rings, checkboxes). Unlike 1 and
+     2 these are literals rather than aliases, so the light theme redeclares them. */
+  --color-surface-3:    rgba(255, 255, 255, 0.08);
+  --color-surface-4:    rgba(255, 255, 255, 0.18);
+
+  /* Text */
+  --color-fg-primary:     rgba(255, 255, 255, 0.92);
+  --color-fg-secondary:   rgba(255, 255, 255, 0.55);
+  --color-fg-tertiary:    rgba(255, 255, 255, 0.30);
+  --color-fg-placeholder: rgba(255, 255, 255, 0.25);
+  --color-fg-accent:      #007AFF;
+
+  /* Borders */
+  --color-separator:    rgba(255, 255, 255, 0.10);
+  --color-border-input: rgba(255, 255, 255, 0.12);
+  --color-border:       var(--color-separator);
+  --color-hairline:     rgba(255, 255, 255, 0.04);
+  --color-overlay-border: rgba(255, 255, 255, 0.14);
+
+  /* Controls */
+  --color-scrollbar-thumb: rgba(255, 255, 255, 0.10);
+  --color-track:           rgba(255, 255, 255, 0.08);
+  --color-toggle-track:    #3a3a3c;
+  --color-toggle-knob:     #ffffff;
+  --color-spinner-track:   rgba(255, 255, 255, 0.15);
+  --select-caret: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+  /* Browser preview chrome — the frame drawn around an embedded page */
+  --color-browser-chrome-bg: #171a21;
+  --color-browser-chrome-fg: #e7eaf0;
+  --color-browser-btn-bg:    #252a34;
+
+  /* Elevation */
+  --shadow-overlay: 0 14px 36px rgba(0, 0, 0, 0.28);
+  --shadow-popover: 0 16px 40px rgba(0, 0, 0, 0.38);
+
+  /* Special */
+  --color-indigo: #5E5CE6;
+
+  /* Spacing */
+  --space-1:  2px;
+  --space-2:  4px;
+  --space-3:  6px;
+  --space-4:  8px;
+  --space-5:  10px;
+  --space-6:  12px;
+  --space-7:  16px;
+  --space-8:  20px;
+  --space-9:  24px;
+  --space-10: 32px;
+
+  /* Radii */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-pill: 9999px;
+
+  /* Sidebar */
+  --sidebar-width:   260px;
+  --sidebar-px:      12px;
+  --titlebar-height: 52px;
+
+  /* Set by the general settings; see js/appearance.js. */
+  --ui-zoom: 1;
+
+  /* Zoom-corrected viewport units. The zoom on <html> divides the containing block,
+     so percentages track the window — but vh/vw are measured against the raw viewport
+     and ignore zoom entirely, which makes "100vh" render 30% taller than the window at
+     the largest text size. Use calc(N * var(--vh)) wherever a vh/vw would otherwise be.
+     Prefer a plain % when an ancestor has a definite size; these are for when none does. */
+  --vh: calc(1vh / var(--ui-zoom));
+  --vw: calc(1vw / var(--ui-zoom));
+}
+
+/* ── Light theme ───────────────────────────────────────────────────────────────
+   Only the colour tokens are re-pointed — everything downstream reads them, so no
+   component rule needs a light variant. data-theme is always a concrete light/dark
+   by the time it lands here: appearance.js resolves the user's Auto against the OS
+   and re-stamps on change, which is why there's no prefers-color-scheme query. */
+:root[data-theme="light"] {
+  --color-accent-subtle:  rgba(0, 122, 255, 0.12);
+  --color-accent-badge:   rgba(0, 122, 255, 0.12);
+
+  --color-running-badge:  rgba(0, 122, 255, 0.12);
+  --color-done:           #248A3D;
+  --color-done-badge:     rgba(52, 199, 89, 0.18);
+  --color-queued:         #B25000;
+  --color-queued-badge:   rgba(255, 149, 0, 0.20);
+  --color-failed:         #D70015;
+  --color-failed-badge:   rgba(255, 59, 48, 0.14);
+  --color-paused:         #6C6C70;
+  --color-paused-badge:   rgba(142, 142, 147, 0.18);
+  --color-danger:         #D70015;
+
+  /* Surfaces */
+  --color-bg-window:    #f2f2f7;
+  --color-bg-sidebar:   #ebebf0;
+  --color-bg-content:   #ffffff;
+  --color-bg-card:      rgba(120, 120, 128, 0.06);
+  --color-bg-grouped:   #ffffff;
+  --color-bg-input:     #ffffff;
+  --color-bg-hover:     rgba(0, 0, 0, 0.045);
+  --color-bg-selection: rgba(0, 122, 255, 0.12);
+  --color-surface-3:    rgba(0, 0, 0, 0.05);
+  --color-surface-4:    rgba(0, 0, 0, 0.18);
+
+  /* Text */
+  --color-fg-primary:     rgba(0, 0, 0, 0.88);
+  --color-fg-secondary:   rgba(0, 0, 0, 0.55);
+  --color-fg-tertiary:    rgba(0, 0, 0, 0.38);
+  --color-fg-placeholder: rgba(0, 0, 0, 0.30);
+
+  /* Borders */
+  --color-separator:      rgba(0, 0, 0, 0.10);
+  --color-border-input:   rgba(0, 0, 0, 0.16);
+  --color-hairline:       rgba(0, 0, 0, 0.06);
+  --color-overlay-border: rgba(0, 0, 0, 0.12);
+
+  /* Controls */
+  --color-scrollbar-thumb: rgba(0, 0, 0, 0.20);
+  --color-track:           rgba(0, 0, 0, 0.08);
+  --color-toggle-track:    #d1d1d6;
+  --color-toggle-knob:     #ffffff;
+  --color-spinner-track:   rgba(0, 0, 0, 0.14);
+  --select-caret: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(0,0,0,0.4)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+  --color-browser-chrome-bg: #e8eaee;
+  --color-browser-chrome-fg: #2b2f36;
+  --color-browser-btn-bg:    #f7f8fa;
+
+  --shadow-overlay: 0 14px 36px rgba(0, 0, 0, 0.14);
+  --shadow-popover: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* The browser's own [hidden] rule is a plain `display: none` in the UA stylesheet, which
+   any inline `style="display:flex"` outranks — so `hidden` on a flex row silently does
+   nothing. Markup that says hidden means hidden; !important is what makes that true
+   against an inline display. Prefer @if in Razor where the element need not exist at all. */
+[hidden] { display: none !important; }
+
+/* The general settings' text-size step. It scales the px sizes set inline across the
+   UI as well as the type scale, which a font-size token alone would miss. Zoom on the
+   root shrinks the initial containing block to match, so the shell still fits exactly. */
+html { zoom: var(--ui-zoom, 1); }
+
+/* Positions a fixed popover at a pointer coordinate. Set --anchor-x/--anchor-y from the
+   event's ClientX/ClientY (in px) and add this class.
+
+   The division is the point: pointer coordinates arrive in real window px, but every
+   length inside the zoomed root is interpreted in zoomed px, so assigning ClientY
+   straight to `top` lands the menu ClientY × zoom down the page — visibly low at the
+   larger text sizes, and further off the further down you click. Dividing the zoom back
+   out converts window px into the local space. Any new pointer-anchored popover wants
+   this class rather than a raw left/top. */
+.zoom-anchored {
+  left: calc(var(--anchor-x, 0px) / var(--ui-zoom, 1));
+  top:  calc(var(--anchor-y, 0px) / var(--ui-zoom, 1));
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-ui);
+  font-size: var(--text-body);
+  color: var(--color-fg-primary);
+  background: var(--color-bg-window);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── App shell ── */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  /* 100% (of #app, which fills body) rather than 100vh: vh ignores the text-size zoom,
+     so the shell would hang past the bottom of the window and body's overflow:hidden
+     would make that strip — the end of the settings nav and content — unreachable. */
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ── Title bar ── */
+.title-bar {
+  height: var(--titlebar-height);
+  min-height: var(--titlebar-height);
+  background: var(--color-bg-sidebar);
+  border-bottom: 1px solid var(--color-separator);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-9);
+  position: relative;
+  flex-shrink: 0;
+  -webkit-app-region: drag;
+  user-select: none;
+}
+
+.title-bar .traffic-lights {
+  display: flex;
+  gap: var(--space-4);
+  -webkit-app-region: no-drag;
+}
+
+.title-bar .traffic-lights .tl {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.tl-close   { background: #FF5F57; }
+.tl-min     { background: #FEBC2E; }
+.tl-max     { background: #28C840; }
+
+.title-bar .tab-bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-1);
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  padding: 3px;
+  -webkit-app-region: no-drag;
+}
+
+.title-bar .tab-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px 16px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--color-fg-secondary);
+  font-family: var(--font-ui);
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.title-bar .tab-btn.active {
+  background: var(--color-bg-grouped);
+  color: var(--color-fg-primary);
+}
+
+.title-bar .tab-btn:hover:not(.active) {
+  background: var(--color-bg-hover);
+  color: var(--color-fg-primary);
+}
+
+/* ── Account menu (title bar, web head only) ──
+   Anchored with position:absolute inside its own relative wrapper rather than position:fixed.
+   The title bar is a containing block already (position:relative), and a fixed popover here
+   would be measured against whichever ancestor happens to carry a transform — the trap the
+   research tab bar walked into. Absolute inside the wrapper cannot be moved by an ancestor. */
+.session-menu {
+  position: relative;
+  margin-left: auto;
+  -webkit-app-region: no-drag;
+}
+
+.session-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--color-fg-secondary);
+  font-family: var(--font-ui);
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  max-width: 200px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.session-btn:hover,
+.session-btn.active {
+  background: var(--color-bg-hover);
+  color: var(--color-fg-primary);
+}
+
+.session-btn-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.session-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+}
+
+.session-popover {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 100;
+  width: 248px;
+  background: var(--color-bg-grouped);
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-popover);
+  padding: 4px;
+  text-align: left;
+}
+
+.session-popover-who {
+  padding: 8px 10px 6px;
+}
+
+.session-popover-who-label {
+  font-size: var(--text-caption);
+  color: var(--color-fg-tertiary);
+}
+
+.session-popover-who-name {
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-primary);
+  overflow-wrap: anywhere;
+}
+
+.session-popover-note {
+  padding: 0 10px 8px;
+  font-size: var(--text-caption);
+  color: var(--color-fg-tertiary);
+  border-bottom: 1px solid var(--color-separator);
+  margin-bottom: 4px;
+}
+
+.session-popover-item {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--color-fg-primary);
+  cursor: pointer;
+  display: block;
+  font-family: var(--font-ui);
+  font-size: var(--text-footnote);
+  padding: 7px 10px;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.session-popover-item:hover:not(:disabled) {
+  background: var(--color-bg-hover);
+}
+
+.session-popover-item:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.session-popover-item-danger {
+  color: #FF3B30;
+}
+
+/* ── Main content area ── */
+.main-area {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  background: var(--color-bg-sidebar);
+  border-right: 1px solid var(--color-separator);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4) 0;
+}
+
+.sidebar-scroll::-webkit-scrollbar { width: 0; }
+
+.sidebar-section-header {
+  padding: var(--space-2) var(--sidebar-px) var(--space-2);
+  font-size: var(--text-caption2);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-section-header button {
+  background: none;
+  border: none;
+  color: var(--color-fg-tertiary);
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-section-header button:hover { color: var(--color-fg-secondary); }
+
+/* ── Topic search ── */
+.sidebar-topic-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 var(--sidebar-px) var(--space-2);
+  padding: 4px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  /* The input background, not the sidebar's: in the light theme the sidebar and the grouped
+     surface are the same colour, and a field that matches its own background is a field nobody
+     can see is there. */
+  background: var(--color-bg-input);
+  color: var(--color-fg-tertiary);
+}
+
+.sidebar-topic-search:focus-within {
+  border-color: var(--color-accent);
+  color: var(--color-fg-secondary);
+}
+
+.sidebar-topic-search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: var(--text-caption);
+  color: var(--color-fg-primary);
+}
+
+.sidebar-topic-search input::placeholder { color: var(--color-fg-tertiary); }
+
+/* The platform's own clear affordance would sit beside ours. */
+.sidebar-topic-search input::-webkit-search-cancel-button { display: none; }
+
+.sidebar-topic-search button {
+  background: none;
+  border: none;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: var(--color-fg-tertiary);
+}
+
+.sidebar-topic-search button:hover { color: var(--color-fg-secondary); }
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 5px var(--sidebar-px);
+  cursor: pointer;
+  border-radius: 0;
+  position: relative;
+  min-height: 32px;
+  transition: background 0.1s;
+}
+
+.sidebar-item:hover { background: var(--color-bg-hover); }
+
+.sidebar-item.selected {
+  background: var(--color-bg-selection);
+  color: var(--color-accent);
+}
+
+/* ── Narration section (3-card layout) ── */
+.narration-section {
+  margin-top: 12px;
+}
+
+.narration-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.narration-section-title {
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-primary);
+  min-width: 0;
+}
+
+/* ── The running render, named in full ──
+   A bar inside a cell cannot say whether it is the narration or the podcast that is
+   rendering, so the strip above the matrix spells out the slot. */
+.narration-run-strip {
+  border: 1px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
+  background: var(--color-accent-subtle);
+  border-radius: var(--radius-md);
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.narration-run-strip-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  /* The meta half (chunk count, time left, stop) refuses to shrink, so on anything narrower
+     than a research page it would otherwise squeeze the slot name down to its ellipsis. */
+  flex-wrap: wrap;
+}
+
+.narration-run-strip-text {
+  flex: 1 1 150px;
+  font-size: var(--text-caption);
+  color: var(--color-fg-primary);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.narration-run-strip-text strong { font-weight: var(--weight-semibold); }
+.narration-run-strip-msg { color: var(--color-fg-secondary); }
+
+.narration-run-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  margin-right: 7px;
+  vertical-align: 1px;
+}
+
+.narration-run-strip-meta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+  font-size: var(--text-caption2);
+  color: var(--color-fg-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.narration-run-cancel-btn {
+  font-size: var(--text-caption2);
+  height: 22px;
+  padding: 0 8px;
+  color: var(--color-failed);
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--color-failed) 40%, transparent);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.narration-run-cancel-btn:hover {
+  background: color-mix(in srgb, var(--color-failed) 12%, transparent);
+  border-color: var(--color-failed);
+}
+
+.narration-delete-btn {
+  font-size: var(--text-caption2);
+  color: var(--color-failed);
+  border-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.narration-delete-btn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-failed) 12%, transparent);
+  border-color: var(--color-failed);
+}
+
+.narration-delete-btn:disabled {
+  opacity: .38;
+  cursor: not-allowed;
+}
+
+/* ── The 2x3 matrix ──
+   minmax(0, 1fr) rather than 1fr: the default min-width:auto lets a long status string
+   push its column past the container. */
+.narration-matrix {
+  display: grid;
+  grid-template-columns: auto repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  align-items: stretch;
+  margin-bottom: 10px;
+}
+
+/* No podcast row (YouTube) → no row-label column to reserve. */
+.narration-matrix-single { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.narration-matrix-single .narration-matrix-corner,
+.narration-matrix-single .narration-matrix-rowlabel { display: none; }
+
+.narration-matrix-colhead {
+  font-size: var(--text-caption2);
+  color: var(--color-fg-tertiary);
+  text-align: center;
+  padding-bottom: 1px;
+}
+
+.narration-matrix-rowlabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-right: 4px;
+  font-size: var(--text-caption);
+  color: var(--color-fg-secondary);
+  white-space: nowrap;
+}
+
+.narration-matrix-rowlabel svg { flex-shrink: 0; opacity: .75; }
+
+.narration-card {
+  position: relative;
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-grouped);
+  padding: 10px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  /* Two rows of cells now, so each is shorter than the old single row of cards. */
+  min-height: 68px;
+}
+
+.narration-card:hover {
+  border-color: var(--color-accent);
+  background: var(--color-bg-card);
+}
+
+/* The selected cell is the one loaded into the player below. Exactly one cell in the
+   whole matrix carries this. */
+.narration-card-active {
+  border-color: var(--color-accent);
+  border-width: 1.5px;
+  background: var(--color-accent-subtle);
+}
+
+.narration-card-generating {
+  border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+}
+
+.narration-card-percent {
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  color: var(--color-fg-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.narration-card-status-script { color: var(--color-queued); }
+/* Made on another machine of the account and not downloaded here yet — a state of its own, not
+   an absence. Blue rather than the orange of "script only": nothing is missing, it is elsewhere. */
+.narration-card-status-remote { color: var(--color-accent); }
+/* The fetch from that machine was tried and stopped. Distinct from "elsewhere": the difference
+   between "press this and it comes" and "pressing it did not work, and here is why". */
+.narration-card-status-failed { color: var(--color-danger); }
+
+.narration-card-actions {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.narration-card-play-btn {
+  padding: 0 7px;
+  color: var(--color-accent);
+}
+
+.narration-now-playing {
+  margin-top: 6px;
+  font-size: var(--text-caption2);
+  color: var(--color-fg-tertiary);
+}
+
+.narration-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.narration-card-label {
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-primary);
+}
+
+.narration-card-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.narration-card-dot-ready   { background: #34C759; }
+.narration-card-dot-script  { background: #FF9500; }
+.narration-card-dot-empty   { background: var(--color-separator); }
+.narration-card-dot-remote  { background: var(--color-accent); }
+.narration-card-dot-failed  { background: var(--color-danger); }
+
+.narration-card-duration {
+  font-size: var(--text-caption);
+  color: var(--color-fg-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.narration-card-status {
+  font-size: var(--text-caption2);
+  color: var(--color-fg-tertiary);
+}
+
+.narration-card-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.narration-card-progress-label {
+  font-size: 10px;
+  color: var(--color-fg-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.narration-card-gen-btn {
+  font-size: 11px;
+  height: 24px;
+  padding: 0 8px;
+  align-self: flex-start;
+}
+
+.narration-card-cancel-btn {
+  /* Rendered directly in the cell, not in the actions row, so it needs its own push. */
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #FF3B30;
+}
+
+/* ── Narration player (legacy, used in YouTube) ── */
+.narration-player {
+  margin-top: 12px;
+  border: 1px solid var(--color-separator);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+  padding: 12px;
+}
+
+.narration-player-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.narration-player-title {
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-primary);
+}
+
+.narration-player-meta {
+  margin-top: 2px;
+  font-size: var(--text-caption2);
+  color: var(--color-fg-tertiary);
+}
+
+.narration-player-actions,
+.narration-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.narration-detail-select {
+  width: 124px;
+  height: 28px;
+  font-size: var(--text-caption);
+}
+
+.narration-generation-progress {
+  margin-top: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.narration-generation-line,
+.narration-generation-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: var(--text-caption2);
+  color: var(--color-fg-secondary);
+}
+
+.narration-generation-line strong {
+  color: var(--color-fg-primary);
+  font-weight: var(--weight-semibold);
+}
+
+.narration-generation-meta {
+  justify-content: flex-start;
+  color: var(--color-fg-tertiary);
+}
+
+.narration-progress-track {
+  height: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--color-bg-grouped);
+  border: 1px solid var(--color-separator);
+}
+
+.narration-progress-fill {
+  height: 100%;
+  min-width: 2px;
+  border-radius: inherit;
+  background: var(--color-accent);
+  transition: width .2s ease;
+}
+
+.narration-controls {
+  margin-top: 12px;
+}
+
+.narration-icon-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-grouped);
+  color: var(--color-fg-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.narration-icon-btn:hover {
+  color: var(--color-fg-primary);
+  background: var(--color-bg-hover);
+}
+
+.narration-icon-btn:disabled {
+  opacity: .42;
+  cursor: not-allowed;
+}
+
+.narration-icon-btn:disabled:hover {
+  color: var(--color-fg-secondary);
+  background: var(--color-bg-grouped);
+}
+
+.narration-icon-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.narration-primary-btn {
+  background: var(--color-accent);
+  color: white;
+  border-color: transparent;
+}
+
+.narration-primary-btn:hover {
+  background: var(--color-accent-hover);
+}
+
+.narration-primary-btn:disabled,
+.narration-primary-btn:disabled:hover {
+  background: var(--color-bg-grouped);
+  color: var(--color-fg-tertiary);
+  border-color: var(--color-separator);
+}
+
+.narration-seek {
+  min-width: 240px;
+  flex: 1 1 280px;
+  display: grid;
+  grid-template-columns: 40px minmax(140px, 1fr) 40px;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-caption2);
+  color: var(--color-fg-tertiary);
+}
+
+.narration-speed {
+  width: 164px;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-caption2);
+  color: var(--color-fg-tertiary);
+}
+
+.narration-seek input,
+.narration-speed input {
+  width: 100%;
+}
+
+.narration-player-empty {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: var(--text-caption);
+  color: var(--color-fg-tertiary);
+}
+
+/* The transfer's own line: a stage, the machine it is talking to, and a count that goes up, so a
+   slow link is distinguishable from a wedged one. */
+.narration-fetch-box {
+  align-items: flex-start;
+}
+
+.narration-fetch-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.narration-fetch-failed {
+  color: var(--color-danger);
+}
+
+.narration-script-preview {
+  margin-top: 10px;
+}
+
+.narration-script-body {
+  font-size: var(--text-caption);
+  line-height: var(--leading-relaxed);
+  color: var(--color-fg-secondary);
+  white-space: pre-wrap;
+}
+
+.sidebar-item.selected::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  background: var(--color-accent);
+  border-radius: 0 2px 2px 0;
+}
+
+.sidebar-item-icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-fg-secondary);
+}
+
+.sidebar-item.selected .sidebar-item-icon { color: var(--color-accent); }
+
+.sidebar-item-content { flex: 1; min-width: 0; }
+
+.sidebar-item-title {
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-medium);
+  color: var(--color-fg-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-item.selected .sidebar-item-title {
+  font-weight: var(--weight-semibold);
+  color: var(--color-accent);
+}
+
+.sidebar-item-sub {
+  font-size: var(--text-caption);
+  color: var(--color-fg-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+/* The name being typed sits exactly where the name it replaces was: same size, same weight, same
+   line — only the frame around it says the row is being edited. */
+.sidebar-item-rename {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2px 6px;
+  margin: -2px 0;
+  font-family: inherit;
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-medium);
+  color: var(--color-fg-primary);
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+
+.sidebar-item-rename::placeholder { color: var(--color-fg-tertiary); }
+
+.sidebar-context-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+}
+
+.sidebar-context-menu {
+  position: fixed;
+  z-index: 100;
+  min-width: 168px;
+  background: var(--color-bg-grouped);
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-popover);
+  padding: 4px;
+}
+
+.sidebar-context-item {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--color-fg-primary);
+  cursor: pointer;
+  display: block;
+  font-size: var(--text-footnote);
+  padding: 7px 10px;
+  text-align: left;
+}
+
+.sidebar-context-item:hover {
+  background: var(--color-bg-hover);
+}
+
+.sidebar-context-item-danger {
+  color: #FF3B30;
+}
+
+/* ── Create topic button ── */
+.btn-create-topic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin: var(--space-4) var(--sidebar-px);
+  padding: 8px 14px;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  width: calc(100% - 2 * var(--sidebar-px));
+  transition: background 0.15s;
+}
+
+.btn-create-topic:hover { background: var(--color-accent-hover); }
+
+/* ── Active job block in sidebar ── */
+.sidebar-active-job {
+  border-top: 1px solid var(--color-separator);
+  padding: var(--space-4) var(--sidebar-px);
+  background: var(--color-bg-card);
+}
+
+/* ── Content area ── */
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg-content);
+}
+
+/* ── Status badges ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-caption2);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+}
+
+.badge-running  { background: var(--color-running-badge);  color: var(--color-running); }
+.badge-done     { background: var(--color-done-badge);     color: var(--color-done); }
+.badge-queued   { background: var(--color-queued-badge);   color: var(--color-queued); }
+.badge-failed   { background: var(--color-failed-badge);   color: var(--color-failed); }
+.badge-paused   { background: var(--color-paused-badge);   color: var(--color-paused); }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+.btn-primary:hover:not(:disabled) { background: var(--color-accent-hover); }
+
+.btn-secondary {
+  background: var(--color-bg-card);
+  color: var(--color-fg-primary);
+  border: 1px solid var(--color-border-input);
+}
+.btn-secondary:hover:not(:disabled) { background: var(--color-bg-hover); }
+
+.btn-danger {
+  background: var(--color-failed-badge);
+  color: var(--color-danger);
+  border: 1px solid rgba(255,59,48,0.2);
+}
+.btn-danger:hover:not(:disabled) { background: rgba(255,59,48,0.2); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-fg-secondary);
+  border: 1px solid var(--color-separator);
+}
+.btn-ghost:hover:not(:disabled) { background: var(--color-bg-hover); color: var(--color-fg-primary); }
+
+/* ── Form controls ── */
+.form-input {
+  width: 100%;
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--radius-md);
+  padding: 7px 12px;
+  color: var(--color-fg-primary);
+  font-family: var(--font-ui);
+  font-size: var(--text-footnote);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.form-input:focus { border-color: var(--color-accent); }
+.form-input::placeholder { color: var(--color-fg-placeholder); }
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-select {
+  appearance: none;
+  background-image: var(--select-caret);
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  cursor: pointer;
+}
+
+.form-label {
+  display: block;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  color: var(--color-fg-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.form-group { margin-bottom: var(--space-6); }
+
+.form-row {
+  display: flex;
+  gap: var(--space-5);
+  align-items: flex-start;
+}
+
+.form-row > * { flex: 1; }
+
+/* ── Toggle ── */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--color-separator);
+}
+
+.toggle-row:last-child { border-bottom: none; }
+
+.toggle-info { flex: 1; min-width: 0; }
+
+.toggle-title {
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-medium);
+  color: var(--color-fg-primary);
+}
+
+.toggle-desc {
+  font-size: var(--text-caption);
+  color: var(--color-fg-tertiary);
+  margin-top: 2px;
+  line-height: var(--leading-snug);
+}
+
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 26px;
+  flex-shrink: 0;
+  margin-left: var(--space-6);
+}
+
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+
+.toggle-track {
+  position: absolute;
+  inset: 0;
+  background: var(--color-toggle-track);
+  border-radius: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggle-switch input:checked + .toggle-track { background: var(--color-accent); }
+
+.toggle-switch input:disabled + .toggle-track {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.toggle-track::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: var(--color-toggle-knob);
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.toggle-switch input:checked + .toggle-track::after { transform: translateX(18px); }
+
+/* ── Cards ── */
+.card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--space-7);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+}
+
+.card-title {
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-primary);
+}
+
+/* ── Settings layout ── */
+.settings-shell {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.settings-nav {
+  width: 200px;
+  min-width: 200px;
+  background: var(--color-bg-sidebar);
+  border-right: 1px solid var(--color-separator);
+  padding: var(--space-5) 0;
+  overflow-y: auto;
+}
+
+.settings-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 7px 16px;
+  cursor: pointer;
+  font-size: var(--text-footnote);
+  color: var(--color-fg-secondary);
+  border-radius: 0;
+  transition: background 0.1s, color 0.1s;
+}
+
+.settings-nav-item:hover { background: var(--color-bg-hover); color: var(--color-fg-primary); }
+
+.settings-nav-item.active {
+  background: var(--color-bg-selection);
+  color: var(--color-accent);
+  font-weight: var(--weight-semibold);
+}
+
+.settings-nav-item svg { flex-shrink: 0; }
+
+.settings-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-9);
+}
+
+.settings-content::-webkit-scrollbar { width: 6px; }
+.settings-content::-webkit-scrollbar-thumb { background: var(--color-scrollbar-thumb); border-radius: 3px; }
+
+.settings-page-title {
+  font-size: var(--text-title2);
+  font-weight: var(--weight-bold);
+  color: var(--color-fg-primary);
+  margin-bottom: var(--space-3);
+}
+
+.settings-page-sub {
+  font-size: var(--text-footnote);
+  color: var(--color-fg-secondary);
+  margin-bottom: var(--space-9);
+  line-height: var(--leading-snug);
+}
+
+.settings-section {
+  margin-bottom: var(--space-9);
+}
+
+.settings-section-title {
+  font-size: var(--text-caption2);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-5);
+}
+
+.settings-group {
+  background: var(--color-bg-grouped);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-7);
+  border-bottom: 1px solid var(--color-separator);
+  gap: var(--space-7);
+}
+
+.setting-row:last-child { border-bottom: none; }
+
+.setting-row-label {
+  font-size: var(--text-footnote);
+  color: var(--color-fg-primary);
+  min-width: 160px;
+  flex-shrink: 0;
+}
+
+.setting-row-control { flex: 1; display: flex; justify-content: flex-end; }
+
+.setting-row-control .form-input,
+.setting-row-control .form-select {
+  max-width: 280px;
+}
+
+/* ── Research view ── */
+.research-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.research-header {
+  padding: var(--space-7) var(--space-9) var(--space-6);
+  border-bottom: 1px solid var(--color-separator);
+  flex-shrink: 0;
+}
+
+.research-header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-7);
+  margin-bottom: var(--space-5);
+}
+
+.research-title {
+  font-size: var(--text-title2);
+  font-weight: var(--weight-bold);
+  color: var(--color-fg-primary);
+  margin-bottom: var(--space-1);
+}
+
+.research-topic-name {
+  font-size: var(--text-headline);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-primary);
+}
+
+.research-topic-desc {
+  font-size: var(--text-footnote);
+  color: var(--color-fg-tertiary);
+  margin-top: var(--space-1);
+}
+
+.research-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+.research-youtube-toggle {
+  display: flex;
+  align-items: center;
+  min-width: 240px;
+  max-width: 320px;
+  gap: var(--space-3);
+}
+
+.research-youtube-toggle .toggle-title,
+.research-youtube-toggle .toggle-desc {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Progress bar ── */
+.progress-bar-wrap {
+  height: 3px;
+  background: var(--color-track);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: var(--space-5);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.progress-label {
+  font-size: var(--text-caption);
+  color: var(--color-fg-tertiary);
+  margin-top: var(--space-2);
+}
+
+/* ── Chat feed ── */
+.chat-feed {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 var(--space-9);
+}
+
+.chat-feed::-webkit-scrollbar { width: 6px; }
+.chat-feed::-webkit-scrollbar-thumb { background: var(--color-scrollbar-thumb); border-radius: 3px; }
+
+.browser-preview-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+  height: clamp(360px, calc(52 * var(--vh)), 620px);
+  margin: 0 0 var(--space-6);
+  overflow: hidden;
+  border: 1px solid var(--color-overlay-border);
+  border-radius: 8px;
+  background: #f7f8fb;
+  box-shadow: var(--shadow-overlay);
+}
+
+.browser-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 48px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--color-separator);
+  background: var(--color-browser-chrome-bg);
+}
+
+.browser-preview-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.browser-preview-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #30d158;
+  box-shadow: 0 0 0 4px rgba(48,209,88,0.14);
+  flex-shrink: 0;
+}
+
+.browser-preview-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.browser-preview-title {
+  color: #f5f7fa;
+  font-size: 12px;
+  font-weight: var(--weight-semibold);
+  line-height: 1.25;
+}
+
+.browser-preview-url {
+  color: #a7adb8;
+  font-size: 11px;
+  line-height: 1.2;
+  max-width: min(720px, calc(72 * var(--vw)));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.browser-preview-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--color-border-input);
+  border-radius: 6px;
+  background: var(--color-browser-btn-bg);
+  color: var(--color-browser-chrome-fg);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.browser-preview-close:hover { background: #303746; }
+
+.browser-preview-frame {
+  display: block;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  border: 0;
+  background: #fff;
+  color-scheme: light;
+}
+
+.browser-preview-placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  background: #f7f8fb;
+  color: #303642;
+}
+
+.browser-preview-placeholder-title {
+  font-size: 14px;
+  font-weight: var(--weight-semibold);
+}
+
+.browser-preview-placeholder-text {
+  font-size: 12px;
+  color: #667085;
+  line-height: 1.45;
+}
+
+@media (max-width: 760px) {
+  .research-header-top {
+    flex-direction: column;
+  }
+
+  .research-actions {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .research-youtube-toggle {
+    width: 100%;
+    max-width: none;
+  }
+
+  .browser-preview-panel {
+    height: 360px;
+  }
+
+  .browser-preview-url {
+    max-width: calc(58 * var(--vw));
+  }
+}
+
+/* ── Embedded browser dock (in-chat ChatGPT/Grok WebView) ──
+   Reserves a docked region at the bottom of the app shell; the native WebView is
+   positioned by the driver over .embedded-browser-slot-viewport. A real flex
+   child (not a modal), so it reflows the chat above it. */
+.embedded-browser-slot {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: clamp(320px, calc(46 * var(--vh)), 640px);
+  border-top: 1px solid var(--color-separator);
+  background: var(--color-browser-chrome-bg);
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.30);
+  z-index: 20;
+}
+
+.embedded-browser-slot-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-separator);
+  background: var(--color-browser-chrome-bg);
+}
+
+.embedded-browser-slot-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #30d158;
+  box-shadow: 0 0 0 4px rgba(48,209,88,0.14);
+  flex-shrink: 0;
+}
+
+.embedded-browser-slot-status {
+  flex: 1;
+  min-width: 0;
+  color: #d7dbe3;
+  font-size: 12px;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.embedded-browser-slot-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--color-border-input);
+  border-radius: 6px;
+  background: var(--color-browser-btn-bg);
+  color: var(--color-browser-chrome-fg);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.embedded-browser-slot-close:hover { background: #303746; }
+
+/* Placeholder the native WebView is docked over. Kept visible (with a subtle
+   loading look) so there is something to see before the WebView attaches. */
+.embedded-browser-slot-viewport {
+  flex: 1;
+  min-height: 0;
+  background:
+    repeating-linear-gradient(-45deg, #1c2028 0 12px, #1a1e26 12px 24px);
+}
+
+.chat-message {
+  display: flex;
+  gap: var(--space-6);
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--color-separator);
+}
+
+.chat-message:last-child { border-bottom: none; }
+
+.chat-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.chat-avatar-ai  { background: rgba(0,122,255,0.2); color: var(--color-accent); }
+.chat-avatar-sys { background: rgba(142,142,147,0.2); color: var(--color-fg-tertiary); }
+
+.chat-body { flex: 1; min-width: 0; }
+
+.chat-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+
+.chat-name {
+  font-size: var(--text-caption);
+  font-weight: var(--weight-semibold);
+}
+
+.chat-time {
+  font-size: 10px;
+  color: var(--color-fg-tertiary);
+}
+
+.chat-content {
+  font-size: var(--text-footnote);
+  color: var(--color-fg-primary);
+  line-height: var(--leading-relaxed);
+  white-space: pre-wrap;
+}
+
+/* ── Typing indicator ── */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-top: var(--space-4);
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0.4;
+  animation: typing-pulse 1.2s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ── Sources panel ── */
+.sources-panel {
+  border-top: 1px solid var(--color-separator);
+  padding: var(--space-6) var(--space-9);
+  flex-shrink: 0;
+}
+
+.sources-label {
+  font-size: var(--text-caption2);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-4);
+}
+
+.sources-chips {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* ── Curated source lists (topic editor) ── */
+.source-url-row {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.source-url-row .form-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.source-url-remove {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-fg-secondary);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.source-url-remove:hover {
+  background: var(--color-bg-hover);
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.source-list-empty {
+  font-size: 12px;
+  color: var(--color-fg-tertiary);
+  margin-bottom: var(--space-3);
+}
+
+/* ── Directive highlighting inside the description textarea ──
+   A textarea can't render styled spans, so the marks are painted on a backdrop behind
+   it. The two must agree on every property that affects where a glyph lands — font,
+   size, line-height, padding, border width, wrapping — or the marks drift off their
+   words. Scroll position is synced by js/directive-highlighter.js. */
+.directive-editor {
+  position: relative;
+}
+
+.directive-editor .directive-backdrop,
+.directive-editor .directive-input {
+  font-family: var(--font-ui);
+  font-size: var(--text-footnote);
+  line-height: var(--leading-normal);
+  letter-spacing: normal;
+  padding: 7px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.directive-editor .directive-backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* Text is invisible here — the textarea on top paints the real glyphs. The backdrop
+     exists only so the <mark> boxes land behind the right characters. */
+  color: transparent;
+  background: var(--color-bg-input);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.directive-editor .directive-input {
+  position: relative;
+  z-index: 1;
+  /* The backdrop paints the field background, so the textarea must let it through. */
+  background: transparent;
+  border-color: var(--color-border-input);
+}
+
+.directive-mark {
+  /* <mark>'s UA style forces a yellow background and black text — override both. */
+  background: var(--color-accent-subtle);
+  color: transparent;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 0 0 1px rgba(0, 122, 255, 0.35);
+}
+
+/* A unit word the offline catalog didn't recognise: the LLM rules on it at job start, so
+   it reads as "not settled yet" rather than as a confirmed part of the command. */
+.directive-mark-pending {
+  background: var(--color-queued-badge);
+  box-shadow: 0 0 0 1px rgba(255, 149, 0, 0.45);
+}
+
+.directive-pending-hint {
+  color: var(--color-queued);
+}
+
+/* ── What the optimizer read out of the description ──
+   Lives inside a collapsed disclosure, so it must read at a glance once opened: a state
+   badge on the summary line, then the interpretation, then the settings it derived. */
+.topic-plan-state {
+  margin-left: auto;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-fg-secondary);
+  background: var(--color-bg-grouped);
+}
+
+.topic-plan-state-running {
+  color: var(--color-queued);
+  background: var(--color-queued-badge);
+}
+
+.topic-plan-state-ready {
+  color: var(--color-accent);
+  background: var(--color-accent-subtle);
+}
+
+.topic-plan-state-failed {
+  color: var(--color-danger, var(--color-queued));
+  background: var(--color-bg-grouped);
+}
+
+.topic-plan-interpretation {
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-fg-primary);
+}
+
+.topic-plan-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.topic-plan-chip {
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  color: var(--color-accent);
+  background: var(--color-accent-subtle);
+  border: 1px solid var(--color-border);
+}
+
+.topic-plan-subject {
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border);
+}
+
+.topic-plan-subject-text {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--color-fg-secondary);
+  white-space: pre-wrap;
+}
+
+/* ── Slash-command suggestions under the description field ── */
+.command-popover-anchor {
+  position: relative;
+}
+
+.command-popover {
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  margin-top: var(--space-2);
+  padding: var(--space-2);
+  background: var(--color-bg-grouped);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.command-popover-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-fg-tertiary);
+  padding: var(--space-2) var(--space-3);
+}
+
+.command-option {
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  text-align: left;
+  cursor: pointer;
+}
+
+.command-option:hover {
+  background: var(--color-bg-hover);
+}
+
+.command-token {
+  flex: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--color-fg-accent);
+}
+
+.command-desc {
+  font-size: 12px;
+  color: var(--color-fg-secondary);
+}
+
+.source-chip {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+}
+
+.source-chip-done {
+  background: var(--color-done-badge);
+  color: var(--color-done);
+  border-color: rgba(52,199,89,0.2);
+}
+
+.source-chip-active {
+  background: var(--color-accent-badge);
+  color: var(--color-accent);
+  border-color: rgba(0,122,255,0.2);
+}
+
+/* ── Empty state ── */
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-7);
+  padding: var(--space-10);
+  text-align: center;
+}
+
+.empty-state-icon svg {
+  opacity: 0.2;
+}
+
+.empty-state-title {
+  font-size: var(--text-title3);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.empty-state-desc {
+  font-size: var(--text-footnote);
+  color: var(--color-fg-tertiary);
+  max-width: 320px;
+  line-height: var(--leading-relaxed);
+}
+
+.topic-picker-card {
+  width: min(460px, 100%);
+  margin-top: var(--space-2);
+  padding: var(--space-6);
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+  text-align: left;
+}
+
+.topic-picker-card .settings-section-title {
+  margin-bottom: var(--space-4);
+}
+
+.topic-picker-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 34px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-sm);
+  background: rgba(0,0,0,0.14);
+  color: var(--color-fg-tertiary);
+}
+
+.topic-picker-input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--color-fg-primary);
+  font: inherit;
+  font-size: var(--text-footnote);
+}
+
+.topic-picker-input::placeholder {
+  color: var(--color-fg-tertiary);
+}
+
+.topic-picker-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-height: 260px;
+  margin-top: var(--space-4);
+  overflow-y: auto;
+}
+
+.topic-picker-item {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-fg-primary);
+  text-align: left;
+  cursor: pointer;
+}
+
+.topic-picker-item:hover {
+  background: var(--color-bg-hover);
+}
+
+.topic-picker-item.selected {
+  border-color: rgba(0,122,255,0.3);
+  background: var(--color-accent-badge);
+}
+
+.topic-picker-item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  color: var(--color-accent);
+}
+
+.topic-picker-item-body {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.topic-picker-item-title {
+  overflow: hidden;
+  color: var(--color-fg-primary);
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-semibold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topic-picker-item-desc {
+  overflow: hidden;
+  color: var(--color-fg-tertiary);
+  font-size: var(--text-caption);
+  line-height: var(--leading-normal);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topic-picker-empty {
+  padding: var(--space-5) var(--space-2) 0;
+  color: var(--color-fg-tertiary);
+  font-size: var(--text-caption);
+  text-align: center;
+}
+
+/* ── Topic editor ── */
+.topic-editor {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-9);
+}
+
+.topic-editor::-webkit-scrollbar { width: 6px; }
+.topic-editor::-webkit-scrollbar-thumb { background: var(--color-scrollbar-thumb); border-radius: 3px; }
+
+.topic-editor-title {
+  font-size: var(--text-title2);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-9);
+}
+
+/* ── Stepper ── */
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.stepper-btn {
+  width: 28px;
+  height: 28px;
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--radius-sm);
+  color: var(--color-fg-primary);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.stepper-btn:hover { background: var(--color-bg-hover); }
+.stepper-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.stepper-value {
+  font-size: var(--text-footnote);
+  color: var(--color-fg-primary);
+  min-width: 28px;
+  text-align: center;
+}
+
+/* ── Summary section ── */
+.summary-section {
+  padding: var(--space-7) var(--space-9);
+  border-top: 1px solid var(--color-separator);
+}
+
+.summary-section-title {
+  font-size: var(--text-caption2);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-6);
+}
+
+.summary-title {
+  font-size: var(--text-headline);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-5);
+}
+
+.summary-body {
+  font-size: var(--text-footnote);
+  color: var(--color-fg-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* Markdown rendered output inside summary panels */
+.markdown-body { color: var(--color-fg-primary); }
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  font-size: 14px; font-weight: 600; margin: 10px 0 4px;
+  color: var(--color-fg-primary);
+}
+.markdown-body h1 { font-size: 15px; }
+.markdown-body p  { margin: 4px 0 8px; }
+.markdown-body ul, .markdown-body ol { margin: 4px 0 8px; padding-left: 20px; }
+.markdown-body li { margin-bottom: 2px; }
+.markdown-body strong { font-weight: 600; color: var(--color-fg-primary); }
+.markdown-body em    { font-style: italic; }
+.markdown-body code  { font-family: monospace; font-size: 11px; background: var(--color-surface-2); padding: 1px 4px; border-radius: 3px; }
+.markdown-body pre   { background: var(--color-surface-2); padding: 8px; border-radius: 6px; overflow: auto; font-size: 11px; }
+.markdown-body blockquote { border-left: 3px solid var(--color-border); padding-left: 10px; color: var(--color-fg-secondary); margin: 6px 0; }
+.markdown-body hr    { border: none; border-top: 1px solid var(--color-border); margin: 10px 0; }
+
+/* ── Scrollable page content ── */
+.page-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-9);
+}
+.page-scroll::-webkit-scrollbar { width: 6px; }
+.page-scroll::-webkit-scrollbar-thumb { background: var(--color-scrollbar-thumb); border-radius: 3px; }
+
+/* ── Page header ── */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-9);
+}
+
+.page-title {
+  font-size: var(--text-title2);
+  font-weight: var(--weight-bold);
+}
+
+.page-sub {
+  font-size: var(--text-footnote);
+  color: var(--color-fg-tertiary);
+  margin-top: var(--space-2);
+}
+
+/* ── Disclosure group ── */
+.disclosure {
+  background: var(--color-bg-grouped);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+}
+
+.disclosure-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-7);
+  cursor: pointer;
+  user-select: none;
+}
+
+.disclosure-header:hover { background: var(--color-bg-hover); }
+
+.disclosure-title {
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-primary);
+}
+
+.disclosure-chevron {
+  color: var(--color-fg-tertiary);
+  transition: transform 0.2s;
+}
+
+.disclosure-chevron.open { transform: rotate(90deg); }
+
+.disclosure-content {
+  border-top: 1px solid var(--color-separator);
+  padding: var(--space-7);
+}
+
+/* ── Modal / sheet ── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-sheet {
+  background: var(--color-bg-grouped);
+  border-radius: var(--radius-lg);
+  padding: var(--space-9);
+  min-width: 480px;
+  max-width: 560px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.modal-panel {
+  background: var(--color-bg-grouped);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* The rules under the header and over the footer are drawn in --color-separator,
+   not --color-surface-2: that one is an alias of --color-bg-grouped, which is the
+   panel's own background, so the lines were the same colour as what they sat on
+   and the dialog read as one undivided slab in both themes. */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-separator);
+  font-weight: var(--weight-semibold);
+  font-size: 14px;
+  gap: 8px;
+}
+
+.modal-body {
+  padding: 16px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-4);
+  padding: 12px 16px;
+  border-top: 1px solid var(--color-separator);
+}
+
+/* ── Danger zone ── */
+.danger-zone {
+  border: 1px solid rgba(255,59,48,0.2);
+  border-radius: var(--radius-md);
+  padding: var(--space-7);
+  margin-top: var(--space-7);
+}
+
+.danger-zone-title {
+  font-size: var(--text-caption);
+  font-weight: var(--weight-semibold);
+  color: var(--color-danger);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-5);
+}
+
+/* ── Spinner ── */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-spinner-track);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ── Key-value pair ── */
+.kv-row {
+  display: flex;
+  gap: var(--space-7);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-separator);
+  font-size: var(--text-footnote);
+}
+
+.kv-row:last-child { border-bottom: none; }
+
+.kv-key {
+  color: var(--color-fg-secondary);
+  min-width: 140px;
+  flex-shrink: 0;
+}
+
+.kv-value { color: var(--color-fg-primary); }
+
+/* ── Research log section header ── */
+.log-section-header {
+  font-size: var(--text-caption2);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-6) 0 var(--space-3);
+}
+
+.research-log-block {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 var(--space-6);
+}
+
+.research-tabs-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  gap: var(--space-4);
+  border-bottom: 1px solid var(--color-separator);
+  /* Pin the tab switcher to the top of the scrolling chat feed so it stays
+     reachable while the user scrolls through a long research log. */
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--color-bg-content);
+  padding-top: var(--space-5);
+  /* The log scrolls behind this bar, so every pixel around it has to be painted
+     by the bar itself: a margin here would be a transparent band with log text
+     running through it. The spacing lives on .research-tab-content instead, and
+     the layer promotion keeps WebKit from leaving unrepainted slivers of the
+     scrolled content along the bar's edges. */
+  margin-bottom: 0;
+  transform: translateZ(0);
+}
+
+.research-tabs {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.research-tab {
+  background: none;
+  border: none;
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-footnote);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-tertiary);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.research-tab:hover {
+  color: var(--color-fg-primary);
+  background: var(--color-bg-hover);
+}
+
+.research-tab.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.research-tabs-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+.research-jump-latest {
+  background: none;
+  border: none;
+  color: var(--color-fg-tertiary);
+  cursor: pointer;
+  padding: var(--space-3);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.research-jump-latest:hover { color: var(--color-fg-primary); }
+
+.research-elapsed {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+  font-size: var(--text-caption);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-fg-tertiary);
+}
+
+.research-elapsed-live { color: var(--color-accent); }
+
+/* Live cowork delegation indicator, next to the auto-resume toggle above the log. */
+.research-cowork-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  font-size: var(--text-caption);
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  color: var(--color-fg-tertiary);
+  cursor: default;
+  white-space: nowrap;
+}
+
+.research-cowork-pill-live {
+  color: var(--color-done);
+  border-color: color-mix(in srgb, var(--color-done) 45%, transparent);
+  background: color-mix(in srgb, var(--color-done) 12%, transparent);
+}
+
+.research-run-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+  padding: var(--space-2) var(--space-4);
+  background: none;
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-secondary);
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.research-run-toggle:hover:not(:disabled) {
+  color: var(--color-fg-primary);
+  background: var(--color-bg-hover);
+}
+
+.research-run-toggle:disabled { opacity: 0.5; cursor: default; }
+
+.research-autoresume {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-caption);
+  color: var(--color-fg-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.research-autoresume:hover { color: var(--color-fg-primary); }
+
+.research-autoresume input { cursor: pointer; margin: 0; }
+
+.research-tab-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-top: var(--space-5);
+}
+
+.research-log-panel {
+  display: flex;
+  flex-direction: column;
+  height: 184px;
+  min-height: 184px;
+  overflow: hidden;
+}
+
+.research-log-panel-expanded {
+  height: auto;
+  flex: 1;
+}
+
+.research-log-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: var(--space-4);
+}
+
+.research-log-scroll::-webkit-scrollbar { width: 6px; }
+.research-log-scroll::-webkit-scrollbar-thumb { background: var(--color-scrollbar-thumb); border-radius: 3px; }
+
+/* ── Research log (rlog) entries ── */
+.rlog-entry {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  font-size: var(--text-footnote);
+  color: var(--color-fg-secondary);
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.rlog-entry:last-child { border-bottom: none; }
+
+.rlog-icon {
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.rlog-content { flex: 1; line-height: var(--leading-relaxed); }
+
+.rlog-time {
+  flex-shrink: 0;
+  font-size: 10px;
+  color: var(--color-fg-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.rlog-running { padding: var(--space-4) 0; border-bottom: none; }
+
+/* Browser visit row */
+.rlog-browser-visit {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0 var(--space-3) var(--space-2);
+  font-size: 11px;
+  color: var(--color-fg-tertiary);
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.rlog-browser-icon { flex-shrink: 0; font-size: 12px; }
+
+.rlog-browser-url {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-accent);
+  opacity: 0.7;
+}
+
+/* LLM prompt/response row */
+.rlog-llm {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  font-size: var(--text-footnote);
+  color: var(--color-fg-secondary);
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.rlog-llm-icon {
+  flex-shrink: 0;
+  font-size: 12px;
+  margin-top: 2px;
+  color: var(--color-accent);
+  opacity: 0.6;
+}
+
+.rlog-llm-text {
+  flex: 1;
+  line-height: var(--leading-relaxed);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* ── Q&A separator ── */
+.qa-separator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-5) 0 var(--space-3);
+  color: var(--color-fg-tertiary);
+  font-size: var(--text-caption2);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.qa-separator::before,
+.qa-separator::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-separator);
+}
+
+/* ── Chat input bar ── */
+.chat-input-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-9);
+  border-top: 1px solid var(--color-separator);
+  flex-shrink: 0;
+}
+
+.chat-input-field {
+  flex: 1;
+  height: 36px;
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--radius-md);
+  padding: 0 var(--space-6);
+  font-size: var(--text-footnote);
+  color: var(--color-fg-primary);
+  outline: none;
+}
+
+.chat-input-field:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(0,122,255,0.15);
+}
+
+.chat-input-field:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.chat-input-field::placeholder { color: var(--color-fg-tertiary); }
+
+.chat-send-btn {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Chat user message ── */
+.chat-message-user {
+  flex-direction: row-reverse;
+}
+
+.chat-message-user .chat-body { text-align: right; }
+
+.chat-message-user .chat-meta { flex-direction: row-reverse; }
+
+.chat-avatar-user {
+  background: rgba(142,142,147,0.18);
+  color: var(--color-fg-secondary);
+}
+
+/* ── Summary actions ── */
+.summary-actions {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+/* ── Job action buttons row ── */
+.job-actions-row {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--color-separator);
+  flex-wrap: wrap;
+}
+
+/* ── Small button variant ── */
+.btn.btn-sm {
+  padding: 4px 10px;
+  font-size: 11px;
+  height: 26px;
+}
+
+/* ── Summary pending empty state ── */
+.summary-pending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-10) var(--space-9);
+  text-align: center;
+}
+
+.summary-pending-title {
+  font-size: var(--text-headline);
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-secondary);
+}
+
+.summary-pending-desc {
+  font-size: var(--text-footnote);
+  color: var(--color-fg-tertiary);
+  max-width: 360px;
+  line-height: var(--leading-relaxed);
+}
+
+/* ─── History Window ──────────────────────────────────────────────────────── */
+.history-window {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-bg-content);
+}
+
+.history-sidebar {
+  width: 260px;
+  min-width: 200px;
+  background: var(--color-bg-sidebar);
+  border-right: 1px solid var(--color-separator);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.history-detail {
+  flex: 1;
+  background: var(--color-bg-content);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.history-window-context-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+}
+
+.history-window-context-menu {
+  position: fixed;
+  z-index: 100;
+  min-width: 160px;
+  background: var(--color-bg-grouped);
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-popover);
+  padding: 4px;
+}
+
+.history-window-context-item {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--color-fg-primary);
+  cursor: pointer;
+  display: block;
+  font-size: var(--text-footnote);
+  padding: 7px 10px;
+  text-align: left;
+}
+
+.history-window-context-item:hover {
+  background: var(--color-bg-hover);
+}
+
+.history-window-context-item-danger {
+  color: #FF3B30;
+}
+
+/* ─── Quick Preview Overlay ────────────────────────────────────────────────── */
+.quick-preview-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quick-preview-sheet {
+  width: 620px;
+  max-height: 620px;
+  background: var(--color-bg-primary);
+  color: var(--color-fg-primary);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.quick-preview-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-bg-tertiary);
+  color: var(--color-fg-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.quick-preview-header {
+  padding: 16px 48px 12px 20px;
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.quick-preview-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-fg-primary);
+  line-height: 1.4;
+}
+
+.quick-preview-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+
+.quick-preview-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ─── Disclosure Groups ─────────────────────────────────────────────────────── */
+.disclosure-group {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.disclosure-summary {
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-fg-primary);
+  cursor: pointer;
+  background: var(--color-bg-secondary);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.disclosure-summary::before {
+  content: "›";
+  font-size: 14px;
+  color: var(--color-fg-tertiary);
+  transition: transform 0.15s;
+  display: inline-block;
+}
+
+details[open] > .disclosure-summary::before {
+  transform: rotate(90deg);
+}
+
+.disclosure-body {
+  padding: 12px 14px;
+  background: var(--color-bg-primary);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ─── Rlog live dot ─────────────────────────────────────────────────────────── */
+.rlog-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  display: inline-block;
+  animation: pulse 1.2s ease-in-out infinite;
+  margin-left: 4px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ─── Sidebar item history hover ─────────────────────────────────────────── */
+.sidebar-item-history { position: relative; }
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-fg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 2px 4px;
+  transition: background 0.1s, color 0.1s;
+}
+
+.btn-icon:hover {
+  background: var(--color-bg-tertiary);
+  color: var(--color-fg-primary);
+}
+
+/* ─── Playwright Browser Activity Panel ──────────────────────────────────── */
+.browser-activity-panel {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.browser-activity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-tertiary);
+}
+
+.browser-activity-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-fg-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.browser-activity-state {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.browser-activity-state.state-idle       { background: var(--color-bg-tertiary); color: var(--color-fg-tertiary); }
+.browser-activity-state.state-navigating { background: #1a3a6e; color: #7ab3ff; }
+.browser-activity-state.state-loading    { background: #1a3a6e; color: #7ab3ff; }
+.browser-activity-state.state-popup      { background: #3a2a0e; color: #f5a623; }
+.browser-activity-state.state-scrolling  { background: #1a3a6e; color: #7ab3ff; }
+.browser-activity-state.state-clicking   { background: #1a3a6e; color: #7ab3ff; }
+.browser-activity-state.state-extracting { background: #0e3a2a; color: #4ade80; }
+.browser-activity-state.state-done       { background: #0e3a2a; color: #4ade80; }
+.browser-activity-state.state-failed     { background: #3a0e0e; color: #f87171; }
+
+.browser-activity-url {
+  padding: 6px 12px;
+  font-size: 11px;
+  color: var(--color-fg-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.browser-activity-page-title {
+  padding: 4px 12px 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-fg-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.browser-activity-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px 8px;
+  font-size: 12px;
+  color: var(--color-fg-secondary);
+}
+
+.browser-spinner {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--color-fg-tertiary);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.browser-activity-screenshot-wrap {
+  position: relative;
+  line-height: 0;
+  border-top: 1px solid var(--color-border);
+  overflow-y: auto;
+  max-height: 340px;
+}
+
+.browser-activity-screenshot {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.browser-click-dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(250, 80, 80, 0.7);
+  border: 2px solid #fff;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: 0 0 6px rgba(250, 80, 80, 0.6);
+  animation: click-pulse 0.6s ease-out forwards;
+}
+
+@keyframes click-pulse {
+  0%   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+
+/* ─── Playwright Runtime Status Banner ───────────────────────────────────── */
+.playwright-runtime-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.playwright-runtime-status-icon {
+  font-size: 14px;
+  font-weight: 700;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.playwright-runtime-status-text { flex: 1; min-width: 0; }
+
+.playwright-runtime-status-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-fg-primary);
+}
+
+.playwright-runtime-status-detail {
+  font-size: 11px;
+  color: var(--color-fg-tertiary);
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.runtime-status-ready   { background: rgba(74, 222, 128, 0.08); border-color: rgba(74, 222, 128, 0.25); }
+.runtime-status-missing { background: rgba(250, 204, 21, 0.08); border-color: rgba(250, 204, 21, 0.25); }
+.runtime-status-broken  { background: rgba(248, 113, 113, 0.08); border-color: rgba(248, 113, 113, 0.25); }
+.runtime-status-installing { background: rgba(96, 165, 250, 0.08); border-color: rgba(96, 165, 250, 0.25); }
+.runtime-status-unknown { background: var(--color-bg-tertiary); }
+
+.runtime-status-ready    .playwright-runtime-status-icon { background: rgba(74, 222, 128, 0.15); color: #4ade80; }
+.runtime-status-missing  .playwright-runtime-status-icon { background: rgba(250, 204, 21, 0.15); color: #facc15; }
+.runtime-status-broken   .playwright-runtime-status-icon { background: rgba(248, 113, 113, 0.15); color: #f87171; }
+.runtime-status-installing .playwright-runtime-status-icon { background: rgba(96, 165, 250, 0.15); color: #60a5fa; }
+.runtime-status-unknown  .playwright-runtime-status-icon { background: var(--color-bg-tertiary); color: var(--color-fg-tertiary); }
+
+/* Settings notice */
+.settings-notice {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.settings-notice-warning {
+  background: rgba(250, 204, 21, 0.08);
+  border: 1px solid rgba(250, 204, 21, 0.25);
+  color: var(--color-fg-secondary);
+}
+
+/* ── ChatGPT-style research log ──────────────────────────────────────────── */
+.chat-log {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-log-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Cowork per-device attribution: a chip naming the machine a row's work ran on. Only
+   rendered when a single run's log mixes more than one device. */
+.chat-device-badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  align-self: center;
+  padding: 1px 7px 1px 6px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.6;
+  max-width: 190px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.chat-device-dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.chat-device-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* "local" / "peer": the name alone never says whose machine it is. Dimmer than the
+   name so the chip still reads as the device first. */
+.chat-device-role {
+  flex-shrink: 0;
+  padding-left: 5px;
+  border-left: 1px solid currentColor;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.chat-log-bubble {
+  flex: 1 1 auto;
+  min-width: 0;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 4px 12px 12px 12px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-fg-primary);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.chat-log-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.chat-log-time {
+  flex-shrink: 0;
+  font-size: 10px;
+  color: var(--color-fg-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.chat-log-bubble-llm {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  color: var(--color-fg-secondary);
+  white-space: pre-wrap;
+  word-break: break-word;
+  display: block;
+}
+
+.chat-log-bubble-error {
+  border-color: rgba(248, 113, 113, 0.4);
+  background: rgba(248, 113, 113, 0.08);
+}
+
+/* The trending harvest: a long, grouped list — give it the monospace treatment the
+   other machine-generated dumps get, so the columns line up. */
+.chat-log-bubble-trending {
+  border-color: rgba(255, 55, 95, 0.35);
+  background: rgba(255, 55, 95, 0.06);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+}
+
+/* Browser card sits flush inside its bubble */
+.chat-log-bubble-browser {
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  display: block;
+}
+
+/* ── Inline 4:3 browser session card ─────────────────────────────────────── */
+.browser-session-card {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-bg-tertiary);
+}
+
+.browser-session-card.is-live {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.browser-session-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-secondary);
+}
+
+.browser-session-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--color-fg-tertiary);
+}
+.browser-session-dot.state-done      { background: #4ade80; }
+.browser-session-dot.state-failed    { background: #f87171; }
+.browser-session-dot.state-navigating,
+.browser-session-dot.state-loading,
+.browser-session-dot.state-scrolling,
+.browser-session-dot.state-clicking  { background: #7ab3ff; }
+.browser-session-dot.state-extracting{ background: #4ade80; }
+.browser-session-dot.state-popup     { background: #f5a623; }
+.browser-session-card.is-live .browser-session-dot { animation: browser-dot-pulse 1.2s ease-in-out infinite; }
+
+@keyframes browser-dot-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.browser-session-domain {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-fg-primary);
+  flex-shrink: 0;
+  max-width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.browser-session-page-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--color-fg-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.browser-session-state {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--color-bg-tertiary);
+  color: var(--color-fg-secondary);
+}
+.browser-session-state.state-done   { background: #0e3a2a; color: #4ade80; }
+.browser-session-state.state-failed { background: #3a0e0e; color: #f87171; }
+
+.browser-session-viewport {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  background: var(--color-bg-primary);
+  overflow: hidden;
+}
+
+.browser-session-shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.browser-session-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--color-fg-tertiary);
+}
+
+/* ─── Collapsed task line + log detail panel ───────────────────────────────── */
+/* One narration/podcast render shows as a single line in the log; the whole row
+   list lives in the side panel it opens. */
+.log-task-line {
+  flex: 1 1 auto;
+  min-width: 0;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 4px 12px 12px 12px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--color-fg-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.log-task-line:hover,
+.log-task-line:focus-visible {
+  background: var(--color-bg-hover);
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.log-task-line-active {
+  border-color: var(--color-accent);
+}
+
+.log-task-icon { flex-shrink: 0; }
+
+.log-task-label {
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* The one part that gives: a long phase message is clipped, not wrapped, so the
+   line stays a line. */
+.log-task-status {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-fg-secondary);
+}
+
+.log-task-spinner {
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--color-fg-tertiary);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+.log-task-steps {
+  flex-shrink: 0;
+  background: var(--color-bg-tertiary);
+  color: var(--color-fg-tertiary);
+  border-radius: 8px;
+  padding: 1px 6px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.log-task-chevron {
+  flex-shrink: 0;
+  color: var(--color-fg-tertiary);
+}
+
+/* Floats over the right third of the chat: no backdrop, so the feed stays readable
+   and scrollable while the detail is open. Below .modal-backdrop's z-index of 200. */
+.log-detail-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(33vw, 420px);
+  z-index: 150;
+  background: var(--color-bg-primary);
+  border-left: 1px solid var(--color-border);
+  box-shadow: -8px 0 32px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  outline: none;
+}
+
+@media (max-width: 900px) {
+  .log-detail-panel { width: 100%; }
+}
+
+.log-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.log-detail-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.log-detail-action {
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-tertiary);
+  color: var(--color-fg-secondary);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.log-detail-action:hover {
+  background: var(--color-bg-hover);
+  color: var(--color-fg-primary);
+}
+
+.log-detail-action-danger {
+  color: #FF3B30;
+  border-color: rgba(255, 59, 48, 0.35);
+}
+
+.log-detail-action-danger:hover {
+  background: rgba(255, 59, 48, 0.12);
+  color: #FF3B30;
+}
+
+.log-detail-title {
+  /* Takes the slack so the device chip sits next to the actions rather than floating in
+     the middle of the header; a long task label ellipsises instead of pushing them out. */
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-fg-primary);
+}
+
+.log-detail-close {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-bg-tertiary);
+  color: var(--color-fg-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.log-detail-close:hover { background: var(--color-bg-hover); }
+
+/* Holds .chat-log rows, so it carries the padding the log feed gets from its own
+   panel and lets the bubbles keep their spacing. */
+.log-detail-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.log-detail-body::-webkit-scrollbar { width: 6px; }
+.log-detail-body::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+  border-radius: 3px;
+}
+
+/* The panel is far narrower than the feed: let the timestamp drop under the text
+   instead of squeezing the message into a column two words wide. */
+.log-detail-body .chat-log-bubble {
+  flex-wrap: wrap;
+}
+
+/* A podcast question, with the expert's answer folded away behind it. */
+.log-detail-disclosure {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.log-detail-disclosure svg {
+  flex-shrink: 0;
+  color: var(--color-fg-tertiary);
+  transition: transform 0.15s ease;
+}
+
+.log-detail-disclosure.is-open svg { transform: rotate(90deg); }
+
+.log-detail-disclosure:hover svg { color: var(--color-accent); }
+
+.log-detail-answer {
+  flex: 1 1 100%;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-fg-secondary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── Relay allowance gauge ──────────────────────────────────────────────────
+   Shared by the Cowork settings page (framed, as a section of its own) and by
+   the dialog that opens from a running research. One rule set, so the bars mean
+   the same thing in both places. */
+.quota-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.quota-card-framed {
+  background: var(--color-bg-grouped);
+  /* A hairline as well as the fill: in the light theme the grouped background is
+     the same white as the page, and the settings groups only read as boxes
+     because their rows carry separators. This card has no rows. */
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: var(--space-9);
+}
+
+.quota-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.quota-card-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 13px;
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-primary);
+}
+
+.quota-card-sub {
+  font-size: 11px;
+  color: var(--color-fg-tertiary);
+  margin-top: 2px;
+}
+
+.quota-card-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+.quota-card-freshness {
+  font-size: 10px;
+  color: var(--color-fg-tertiary);
+  white-space: nowrap;
+}
+
+.quota-badge {
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--color-done-badge);
+  color: var(--color-done);
+}
+
+.quota-meter { margin-top: var(--space-2); }
+
+.quota-meter-name {
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-fg-tertiary);
+  margin-bottom: var(--space-3);
+}
+
+.quota-row { margin-bottom: 12px; }
+.quota-row:last-child { margin-bottom: 0; }
+
+.quota-row-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.quota-row-label {
+  font-size: 13px;
+  color: var(--color-fg-primary);
+}
+
+.quota-row-right {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  font-size: 11px;
+  color: var(--color-fg-tertiary);
+  white-space: nowrap;
+}
+
+.quota-row-percent {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-secondary);
+  min-width: 34px;
+  text-align: right;
+}
+
+.quota-row-percent-full { color: var(--color-failed); }
+
+.quota-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-bg-grouped);
+  border: 1px solid var(--color-separator);
+  overflow: hidden;
+  margin: 6px 0 4px;
+}
+
+.quota-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.quota-fill-high { background: var(--color-queued); }
+.quota-fill-full { background: var(--color-failed); }
+
+.quota-row-numbers {
+  font-size: 11px;
+  color: var(--color-fg-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.quota-note {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--color-fg-tertiary);
+}
+
+.quota-note-warn { color: var(--color-queued); }
+
+.quota-more > summary {
+  font-size: 11px;
+  color: var(--color-fg-tertiary);
+  cursor: pointer;
+  padding: 4px 0;
+  list-style: none;
+}
+
+.quota-more > summary::before { content: "▸ "; }
+.quota-more[open] > summary::before { content: "▾ "; }
+.quota-more > summary::-webkit-details-marker { display: none; }
+
+/* The same gauge shrunk into a running research's header. */
+.quota-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  font-size: var(--text-caption);
+  font-variant-numeric: tabular-nums;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: none;
+  color: var(--color-fg-tertiary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.quota-chip:hover {
+  color: var(--color-fg-secondary);
+  border-color: var(--color-fg-tertiary);
+}
+
+.quota-chip-full {
+  color: var(--color-failed);
+  border-color: color-mix(in srgb, var(--color-failed) 45%, transparent);
+  background: color-mix(in srgb, var(--color-failed) 10%, transparent);
+}
+
+.quota-chip-track {
+  width: 34px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-separator);
+  overflow: hidden;
+}
+
+.quota-chip-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+/* A full chip is already red end to end; the bar takes the same colour so the
+   two do not read as two different states. */
+.quota-chip-full .quota-chip-fill { background: currentColor; }
+
+.quota-chip-percent { font-weight: var(--weight-semibold); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Assistant (developer preview)
+
+   Its own accent so a screenshot is never ambiguous about which surface it is:
+   the research side is the app's blue, this one is violet. Every border is
+   written out against --color-separator rather than leaning on
+   --color-surface-2 — in the light theme that token IS the page background,
+   so a card relying on it for a hairline renders with no edge at all.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Declared on every root the feature has — the sidebar is a sibling of the view, and the
+   selection pill hangs off the document body so it can be positioned against the window,
+   so a variable defined only on the view would reach neither. */
+.assistant-view,
+.assistant-sidebar,
+.assistant-quote-pill {
+  --assistant-accent:        #7C5CFF;
+  --assistant-accent-subtle: rgba(124, 92, 255, 0.14);
+}
+
+.assistant-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.assistant-sidebar .sidebar-item.selected {
+  border-left: 2px solid var(--assistant-accent);
+}
+
+.sidebar-empty-note {
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--color-fg-tertiary);
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+
+.assistant-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-separator);
+  flex: 0 0 auto;
+}
+
+.assistant-header-title {
+  font-size: 14px;
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.assistant-header-chips { display: flex; gap: 6px; margin-left: auto; }
+
+.assistant-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  color: var(--color-fg-secondary);
+  white-space: nowrap;
+}
+
+.assistant-chip-accent {
+  border-color: var(--assistant-accent);
+  background: var(--assistant-accent-subtle);
+  color: var(--assistant-accent);
+}
+
+/* A workspace that lives on another machine. Dimmed rather than hidden: the
+   thread genuinely has one, it just is not reachable from here. */
+.assistant-chip-muted { opacity: 0.55; text-decoration: line-through; }
+
+.assistant-device-badge {
+  flex: 0 0 auto;
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-3);
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-secondary);
+}
+
+/* A turn running in this conversation right now — on this machine or on another
+   one of the account. Deliberately a dot rather than a word: it sits next to the
+   device badge in a narrow row, and the only thing it has to do is survive being
+   seen out of the corner of an eye while scanning the list. */
+.assistant-thread-working {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--assistant-accent);
+  animation: assistant-thread-working-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes assistant-thread-working-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+
+/* Same bargain the typing dots strike: less motion, but still plainly lit. */
+@media (prefers-reduced-motion: reduce) {
+  .assistant-thread-working { animation: none; opacity: 0.85; }
+}
+
+/* A conversation stopped in front of a permission request — here, or on another machine of the
+   account. It replaces the busy dot rather than joining it: waiting to be answered is the more
+   urgent of the two facts, and a lock is legible where a second coloured dot would not be. */
+.assistant-thread-approval {
+  flex: 0 0 auto;
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* ── Transcript ─────────────────────────────────────────────────────────── */
+
+.assistant-messages {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.assistant-msg { display: flex; }
+.assistant-msg-user { justify-content: flex-end; }
+.assistant-msg-assistant { justify-content: flex-start; }
+
+/* A scrolling flex column shrinks its children before it agrees to scroll, and a child that
+   sets `overflow` — which every tool card does, to round its own corners — loses the automatic
+   minimum size that would otherwise stop it. That is what cut the audio card in half while a
+   podcast was rendering: the taller the card grew, the harder the transcript squeezed it, and
+   the player it turns into at the end was below the cut, so the finished episode was never
+   visible at all. Nothing in a transcript is a shrinkable box — every row is as tall as it is,
+   and the column scrolls. */
+.assistant-messages > * { flex: 0 0 auto; }
+
+.assistant-bubble {
+  max-width: 72%;
+  padding: 8px 12px;
+  border-radius: var(--radius-lg);
+  background: var(--assistant-accent-subtle);
+  border: 1px solid var(--color-separator);
+  color: var(--color-fg-primary);
+  font-size: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ── Quoting, and re-asking a question ──────────────────────────────────── */
+
+/* The per-message actions ride in the message's own flex row, so they land beside the bubble:
+   left of the user's, right of the assistant's. Hidden until the message is hovered — every
+   message has them, and a feed with two buttons on every line reads as a toolbar, not a
+   conversation. Keyboard focus reveals them too, or they would be unreachable without a mouse. */
+.assistant-msg-actions {
+  display: flex;
+  gap: 4px;
+  align-self: flex-end;
+  flex: 0 0 auto;
+  padding: 0 4px;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.assistant-msg:hover .assistant-msg-actions,
+.assistant-msg-actions:focus-within { opacity: 1; }
+
+.assistant-msg-action {
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-card);
+  color: var(--color-fg-tertiary);
+  padding: 1px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.assistant-msg-action:hover:not(:disabled) {
+  color: var(--assistant-accent);
+  border-color: var(--assistant-accent);
+}
+
+.assistant-msg-action:disabled { opacity: 0.4; cursor: default; }
+
+/* A passage carried into the question, in the bubble above the question itself. */
+.assistant-quote {
+  margin-bottom: 6px;
+  padding-left: 8px;
+  border-left: 2px solid var(--assistant-accent);
+  color: var(--color-fg-secondary);
+  font-size: 12px;
+}
+
+.assistant-quote-who {
+  display: block;
+  color: var(--color-fg-tertiary);
+  font-size: 11px;
+}
+
+.assistant-quote-text { display: block; white-space: pre-wrap; }
+
+.assistant-quote-chip { border-left: 2px solid var(--assistant-accent); }
+
+/* The offer to quote a passage, standing over the passage itself the moment it is highlighted.
+   Fixed to the window rather than placed in the feed: it is positioned from a selection rectangle,
+   which is measured against the window, and it has to stay put while the feed scrolls under it. */
+.assistant-quote-pill {
+  position: fixed;
+  z-index: 100;
+  transform: translate(-50%, calc(-100% - 8px));
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border: 1px solid var(--assistant-accent);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-card);
+  color: var(--assistant-accent);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: var(--shadow-popover);
+  /* Dragging over the pill must not extend the very highlight it is offering to quote. */
+  user-select: none;
+}
+
+/* Underneath, when the highlight starts too close to the top of the window for the pill to
+   fit above it — the script decides, because only it has the rectangle. */
+.assistant-quote-pill-below { transform: translate(-50%, 8px); }
+
+/* Right-clicking a message. Same shape as the sidebar's menu, under its own name: the two are
+   the same idea in different places, and one renaming the other's items would be a surprise. */
+.assistant-context-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+}
+
+.assistant-context-menu {
+  position: fixed;
+  z-index: 100;
+  min-width: 168px;
+  background: var(--color-bg-grouped);
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-popover);
+  padding: 4px;
+}
+
+.assistant-context-item {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--color-fg-primary);
+  cursor: pointer;
+  display: block;
+  font-family: var(--font-ui);
+  font-size: var(--text-footnote);
+  padding: 7px 10px;
+  text-align: left;
+}
+
+.assistant-context-item:hover { background: var(--color-bg-hover); }
+
+/* The question opened for re-asking. Wider than a bubble because it is an input now, and a
+   three-line box squeezed into 72% of the column is not one anybody can write in. */
+.assistant-bubble-editing { max-width: 100%; width: 100%; white-space: normal; }
+
+.assistant-edit-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+  color: var(--color-fg-primary);
+  font: inherit;
+  resize: vertical;
+}
+
+.assistant-edit-warning {
+  margin-top: 6px;
+  color: var(--color-fg-tertiary);
+  font-size: 11px;
+}
+
+.assistant-edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.assistant-markdown {
+  max-width: 100%;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-fg-primary);
+}
+
+.assistant-markdown p { margin: 0 0 8px; }
+.assistant-markdown ul, .assistant-markdown ol { margin: 0 0 8px 18px; }
+.assistant-markdown code {
+  padding: 1px 4px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-3);
+  font-size: 12px;
+}
+
+/* Code and tables scroll inside themselves; the transcript column must not. */
+.assistant-markdown pre,
+.assistant-markdown table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.assistant-markdown pre {
+  padding: 10px 12px;
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+}
+
+.assistant-caret {
+  display: inline-block;
+  width: 6px;
+  height: 14px;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--assistant-accent);
+  animation: assistant-blink 1s steps(2, start) infinite;
+}
+
+@keyframes assistant-blink { to { visibility: hidden; } }
+
+.assistant-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--color-fg-secondary);
+}
+
+/* ── Typing indicator ───────────────────────────────────────────────────── */
+
+/* The "…" while the assistant is still working. Deliberately shaped like a
+   message rather than like a status bar: it stands in for the answer, in the
+   place the answer will appear. */
+.assistant-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-card);
+  font-size: 12px;
+  color: var(--color-fg-secondary);
+}
+
+.assistant-typing-dots { display: inline-flex; gap: 3px; }
+
+.assistant-typing-dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--assistant-accent);
+  animation: assistant-typing 1.2s infinite ease-in-out;
+}
+
+.assistant-typing-dots span:nth-child(2) { animation-delay: 0.15s; }
+.assistant-typing-dots span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes assistant-typing {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30%           { opacity: 1;    transform: translateY(-3px); }
+}
+
+/* Someone who has asked for less motion still needs to see that it is working,
+   so the dots stop moving and stay lit rather than disappearing. */
+@media (prefers-reduced-motion: reduce) {
+  .assistant-typing-dots span { animation: none; opacity: 0.8; }
+  .assistant-caret { animation: none; }
+}
+
+.assistant-typing-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 46ch;
+}
+
+/* Which machine wrote a row / is doing the thinking is now carried in the bubble's hover
+   tooltip (the `title` attribute) rather than a visible badge, so it never competes with the
+   message or the activity line. No dedicated styling needed. */
+
+/* ── Visited pages ──────────────────────────────────────────────────────── */
+
+.assistant-page-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.assistant-page-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  padding: 4px 8px;
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-card);
+  font: inherit;
+  font-size: 12px;
+  color: var(--color-fg-secondary);
+  cursor: pointer;
+  text-align: left;
+}
+
+/* A page read without a browser has no picture behind it, so it is not a
+   control — same line, nothing to press. */
+.assistant-page-link.is-flat { cursor: default; }
+
+.assistant-page-link:not(.is-flat):hover { border-color: var(--assistant-accent); }
+
+.assistant-page-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-fg-primary);
+}
+
+.assistant-page-hint { color: var(--color-fg-tertiary); flex: 0 0 auto; }
+
+.assistant-page-row.failed .assistant-page-title { text-decoration: line-through; }
+
+/* Next to the page it belongs to, rather than shoved to the far edge of the feed
+   by the margin the tool cards' own version of this marker needs. */
+.assistant-page-row .assistant-tool-failed { margin-left: 0; }
+
+.assistant-shot-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.62);
+}
+
+.assistant-shot-figure {
+  max-width: min(1100px, 92vw);
+  max-height: 88vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-card);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.assistant-shot-image {
+  min-height: 0;
+  max-width: 100%;
+  /* Capped short of the figure's own height so a tall page's screenshot scales down
+     instead of pushing the caption — which names the page — off the bottom. */
+  max-height: 76vh;
+  object-fit: contain;
+}
+
+.assistant-shot-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--color-separator);
+  font-size: 12px;
+}
+
+.assistant-shot-title { color: var(--color-fg-primary); font-weight: var(--weight-semibold); }
+.assistant-shot-url   { color: var(--color-fg-tertiary); overflow-wrap: anywhere; }
+
+/* ── Search hits ────────────────────────────────────────────────────────── */
+
+.assistant-search-hits { display: flex; flex-direction: column; gap: 6px; }
+
+.assistant-search-hit {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  font-size: 12px;
+}
+
+.assistant-search-hit-title { color: var(--color-fg-primary); }
+.assistant-search-hit-url   { color: var(--color-fg-tertiary); font-size: 11px; }
+
+/* ── Research run card ──────────────────────────────────────────────────── */
+
+.assistant-research-card { border-color: var(--assistant-accent); }
+
+.assistant-research-status { margin-left: auto; flex: 0 0 auto; }
+
+.assistant-research-bar {
+  height: 3px;
+  background: var(--color-surface-3);
+}
+
+.assistant-research-bar-fill {
+  height: 100%;
+  background: var(--assistant-accent);
+  transition: width 0.4s ease;
+}
+
+.assistant-research-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  color: var(--color-fg-tertiary);
+}
+
+.assistant-research-live {
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  background: var(--assistant-accent-subtle);
+  color: var(--assistant-accent);
+}
+
+.assistant-research-note { font-size: 12px; color: var(--color-fg-tertiary); }
+
+.assistant-research-steps {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.assistant-research-step {
+  display: flex;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-fg-secondary);
+}
+
+.assistant-research-step-icon { flex: 0 0 auto; }
+.assistant-research-step-text { overflow-wrap: anywhere; }
+
+/* ── Audio card ─────────────────────────────────────────────────────────── */
+
+/* The chat's own copy of the job audio panel. Only the frame is styled here — the player
+   inside it is the research page's component and brings its own everything. */
+
+.assistant-audio-card { border-color: var(--assistant-accent); }
+
+.assistant-audio-percent {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-fg-tertiary);
+  font-size: 11px;
+}
+
+/* A podcast question with the expert's answer folded under it. */
+.assistant-audio-turn { min-width: 0; overflow-wrap: anywhere; }
+.assistant-audio-turn summary { cursor: pointer; }
+.assistant-audio-turn-body {
+  margin-top: 4px;
+  padding-left: 10px;
+  border-left: 2px solid var(--color-separator);
+  color: var(--color-fg-tertiary);
+  white-space: pre-wrap;
+}
+
+.assistant-audio-state {
+  margin-left: auto;
+  flex: 0 0 auto;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  background: var(--assistant-accent-subtle);
+  color: var(--assistant-accent);
+  font-size: 11px;
+}
+
+/* The panel is built for the width of a research page; in a chat bubble the six-cell matrix
+   has to give way rather than push the conversation sideways. */
+.assistant-audio-card .narration-section { margin-top: 0; }
+.assistant-audio-card .narration-matrix { overflow-x: auto; }
+
+/* The finished script is the whole episode. On a research page that is the page; in a
+   transcript it would bury every message after it, so here it gets a window and scrolls. */
+.assistant-audio-card .narration-script-body {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+/* ── Tool cards ─────────────────────────────────────────────────────────── */
+
+.assistant-tool-card {
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+  overflow: hidden;
+}
+
+.assistant-tool-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 10px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: left;
+  color: var(--color-fg-secondary);
+}
+
+.assistant-tool-chevron { width: 10px; color: var(--color-fg-tertiary); }
+.assistant-tool-name { font-weight: var(--weight-semibold); color: var(--color-fg-primary); }
+
+.assistant-tool-summary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.assistant-tool-failed {
+  margin-left: auto;
+  color: var(--color-failed);
+  font-weight: var(--weight-semibold);
+}
+
+.assistant-tool-body {
+  padding: 8px 10px 10px;
+  border-top: 1px solid var(--color-separator);
+}
+
+.assistant-tool-label {
+  margin: 6px 0 2px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-fg-tertiary);
+}
+
+.assistant-tool-pre {
+  max-height: 320px;
+  margin: 0;
+  padding: 8px;
+  overflow: auto;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-3);
+  font-size: 11px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ── Approval ───────────────────────────────────────────────────────────── */
+
+.assistant-approval-card {
+  border: 1px solid var(--assistant-accent);
+  border-radius: var(--radius-md);
+  background: var(--assistant-accent-subtle);
+  padding: 12px;
+}
+
+.assistant-approval-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.assistant-approval-title {
+  font-size: 13px;
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-primary);
+}
+
+.assistant-approval-detail {
+  margin: 0 0 8px;
+  padding: 8px;
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-card);
+  font-size: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.assistant-approval-diff {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 640px) {
+  .assistant-approval-diff { grid-template-columns: 1fr; }
+}
+
+.assistant-approval-diff pre {
+  margin: 0;
+  padding: 6px 8px;
+  overflow-x: auto;
+  border: 1px solid var(--color-separator);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-card);
+  font-size: 11px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.assistant-approval-label {
+  margin-bottom: 2px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-fg-tertiary);
+}
+
+.assistant-approval-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* The same request seen from a machine that cannot answer it. Muted rather than accented: it is
+   a notice, not a thing to act on here, and an identical-looking card on two screens would invite
+   exactly the click that does not exist. */
+.assistant-approval-card-remote {
+  border-color: var(--color-separator);
+  background: var(--color-bg-grouped);
+}
+
+.assistant-approval-elsewhere {
+  font-size: 12px;
+  color: var(--color-fg-secondary);
+}
+
+/* ── Capabilities: the list, and the offer under a reply ─────────────────── */
+
+/* One switchable capability on the assistant's settings page. The rule below it separates it
+   from the next one — the rows carry sub-lines (tools, accounts) and without a divider the two
+   halves of two capabilities read as one. */
+.capability-row {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-separator);
+}
+
+.capability-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.capability-icon {
+  margin-right: 6px;
+}
+
+/* Named by whoever wrote it — only ever shown for a capability that did not ship with the app. */
+.capability-publisher {
+  margin-left: 6px;
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-grouped);
+  font-size: 10px;
+  color: var(--color-fg-tertiary);
+}
+
+.capability-tools {
+  margin-top: 2px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  color: var(--color-fg-tertiary);
+  overflow-wrap: anywhere;
+}
+
+.capability-account {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--color-fg-secondary);
+}
+
+/* An account the capability needs and does not have. Said in the accent colour rather than in red:
+   nothing is broken, something is simply not set up yet. */
+.capability-account-missing {
+  color: var(--assistant-accent);
+}
+
+.assistant-capability-offer {
+  padding: 12px;
+  border: 1px solid var(--assistant-accent);
+  border-radius: var(--radius-md);
+  background: var(--assistant-accent-subtle);
+}
+
+.assistant-capability-offer-body {
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--color-fg-primary);
+}
+
+.assistant-capability-offer-note {
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--color-fg-secondary);
+}
+
+/* ── Composer ───────────────────────────────────────────────────────────── */
+
+.assistant-composer {
+  flex: 0 0 auto;
+  padding: 12px 16px;
+  border-top: 1px solid var(--color-separator);
+}
+
+.assistant-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+  color: var(--color-fg-primary);
+  font: inherit;
+  font-size: 13px;
+  resize: vertical;
+}
+
+.assistant-input:focus {
+  outline: none;
+  border-color: var(--assistant-accent);
+}
+
+.assistant-composer-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.assistant-composer-spacer { flex: 1 1 auto; }
+
+/* The "@" / "/" popovers hang off the box, not off the whole composer: anchored to the
+   composer they would open over the send row. */
+.assistant-composer-box {
+  position: relative;
+}
+
+/* Above the field rather than below it — below is the send row, and on a short window
+   there is nothing below that either. */
+.command-popover-above {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.assistant-mention-option {
+  align-items: flex-start;
+}
+
+/* Label over detail, and both clipped: a research title and a nested path are each long
+   enough to push the popover wider than the pane on their own. */
+.assistant-mention-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.assistant-mention-label {
+  font-size: 12px;
+  color: var(--color-fg-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.assistant-mention-text .command-desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.assistant-mention-note {
+  padding: var(--space-2) var(--space-3);
+}
+
+/* What is hanging on the message being written, above the box. */
+.assistant-composer-chips,
+.assistant-bubble-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.assistant-composer-chips { margin-bottom: 8px; }
+.assistant-bubble-chips   { margin-top: 6px; }
+
+.assistant-attachment {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  padding: 2px 6px;
+  font-size: 11px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-card);
+  color: var(--color-fg-secondary);
+}
+
+.assistant-attachment-label {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.assistant-attachment-remove {
+  padding: 0 2px;
+  border: none;
+  background: transparent;
+  color: var(--color-fg-tertiary);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.assistant-attachment-remove:hover { color: var(--color-fg-primary); }
+
+/* A "/" command's effect, in the accent so it reads as something switched on rather than
+   as another attachment. */
+.assistant-turn-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 11px;
+  border: 1px solid var(--assistant-accent);
+  border-radius: var(--radius-sm);
+  background: var(--assistant-accent-subtle);
+  color: var(--assistant-accent);
+}
+
+.assistant-composer-hint {
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--color-fg-tertiary);
+}
+
+.assistant-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-fg-secondary);
+  cursor: pointer;
+}
+
+.assistant-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100%;
+  text-align: center;
+}
+
+.assistant-empty-title {
+  font-size: 15px;
+  font-weight: var(--weight-semibold);
+  color: var(--color-fg-primary);
+}
+
+.assistant-empty-desc {
+  max-width: 380px;
+  font-size: 12px;
+  color: var(--color-fg-secondary);
+}
+
+/* A note under a setting row that has no toggle-desc slot of its own. */
+.assistant-setting-hint {
+  padding: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-fg-secondary);
+}
+
+/* Model picker in the assistant header. Styled as a chip so it sits with the
+   others rather than reading as a form control dropped into a title bar. */
+.assistant-chip-select {
+  appearance: none;
+  max-width: 200px;
+  padding-right: 20px;
+  background-color: transparent;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: right 9px center, right 5px center;
+  background-size: 4px 4px, 4px 4px;
+  background-repeat: no-repeat;
+  color: var(--color-fg-secondary);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+
+.assistant-chip-select:disabled { opacity: 0.5; cursor: default; }
+
+/* Something that happened to the conversation rather than something said in it —
+   a model switch. A centred rule, not a bubble. */
+.assistant-system-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--color-fg-tertiary);
+}
+
+.assistant-system-note::before,
+.assistant-system-note::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-separator);
+}
+
+/* ── Assistant memory list ───────────────────────────────────────────────── */
+/* Cards inside .settings-group, which is painted --color-bg-grouped. In the light theme that
+   token resolves to the page's own background, so a card drawn on it with no border would be an
+   invisible rectangle — hence the hairline on every card rather than a fill alone. */
+.memory-panel {
+  /* Wider than the app's other dialogs on purpose: this one is read, not just acknowledged, and
+     memories are sentences that wrap badly in a narrow column. Capped by the viewport so the
+     header, toolbar and footer stay put while only the list scrolls. */
+  width: min(720px, 92vw);
+  max-height: 82vh;
+}
+
+.memory-toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 16px 0;
+}
+
+.memory-toolbar .form-input {
+  flex: 1;
+}
+
+/* The only scrolling part of the panel. Without min-height:0 a flex child refuses to shrink below
+   its content, so the list would push the footer off the bottom instead of scrolling. */
+.memory-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.modal-footer .assistant-setting-hint {
+  margin-right: auto;
+  padding: 0;
+}
+
+.memory-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+}
+
+.memory-card-editing {
+  border-color: var(--color-accent);
+}
+
+.memory-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.memory-card-title {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.memory-card-kind {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  color: var(--color-fg-secondary);
+}
+
+.memory-card-body {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-fg-secondary);
+  white-space: pre-wrap;
+}
+
+.memory-card-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Forgotten memories stay listed so "forget" can be undone, and are dimmed so they never read as
+   part of what the assistant currently knows. */
+.memory-card-forgotten {
+  opacity: 0.55;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   Assistant projects
+
+   A project's page shares the content area with the chat. It is a settings-shaped
+   surface rather than a chat-shaped one — a column of sections that are read and
+   edited occasionally — so it borrows the settings hint and chip styles rather
+   than the message bubbles beside it.
+   ────────────────────────────────────────────────────────────────────────────── */
+
+/* The projects section header carries a + button, which the shared one does not. */
+.assistant-projects-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.assistant-project-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-fg-secondary);
+  cursor: pointer;
+}
+
+.assistant-project-add:hover {
+  background: var(--color-bg-hover);
+  color: var(--color-fg-primary);
+}
+
+/* A selected project is the frame the conversations below are read in, so it takes the
+   assistant's accent rather than the neutral selection the thread rows use. */
+.assistant-sidebar .assistant-project-item.selected::before {
+  background: var(--assistant-accent);
+}
+
+.assistant-project-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.assistant-project-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* The name is the page's title and is edited in place: a heading that happens to be typeable,
+   not a form field with a label over it. The box only appears on hover or focus. */
+.assistant-project-name {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-fg-primary);
+  font: inherit;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.assistant-project-name:hover  { border-color: var(--color-border); }
+.assistant-project-name:focus  { border-color: var(--assistant-accent); outline: none; }
+.assistant-project-name::placeholder { color: var(--color-fg-tertiary); font-weight: 500; }
+
+.assistant-project-start { margin: 0; flex: 0 0 auto; }
+
+.assistant-project-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 780px;
+}
+
+.assistant-project-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.assistant-project-section-title {
+  padding-bottom: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-fg-primary);
+}
+
+.assistant-project-description {
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+  color: var(--color-fg-primary);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+.assistant-project-description:focus {
+  border-color: var(--assistant-accent);
+  outline: none;
+}
+
+.assistant-project-folder-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* A <label> wrapping the file input, so the whole area is the click target and the browser's own
+   "Choose file" button never renders. */
+.assistant-project-drop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 16px;
+  margin-bottom: 10px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+  color: var(--color-fg-secondary);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.assistant-project-drop:hover {
+  border-color: var(--assistant-accent);
+  color: var(--color-fg-primary);
+}
+
+.assistant-project-drop input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.assistant-project-drop.busy {
+  border-style: solid;
+  border-color: var(--assistant-accent);
+  cursor: progress;
+}
+
+.assistant-project-file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* A hairline border rather than a background alone: --color-bg-card is the page's own background
+   in the light theme, and a card drawn with fill only would be invisible there. */
+.assistant-project-file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+}
+
+.assistant-project-file-main { flex: 1; min-width: 0; }
+
+.assistant-project-file-name {
+  font-size: 13px;
+  color: var(--color-fg-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.assistant-project-file-meta {
+  font-size: 11px;
+  color: var(--color-fg-secondary);
+  line-height: 1.4;
+}
+
+/* A file that could not be read stays in the list, and says so. Dropping it would leave the user
+   unable to tell "not read" from "read and unhelpful". */
+.assistant-project-file.failed { border-color: var(--color-danger); }
+.assistant-project-file.failed .assistant-project-file-meta { color: var(--color-danger); }
+
+.assistant-project-file-remove {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-fg-tertiary);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.assistant-project-file-remove:hover {
+  background: var(--color-bg-hover);
+  color: var(--color-danger);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   Responsive / phone layout
+
+   The shell is a two-pane desktop layout: a fixed-width list column (the research
+   sidebar, the assistant sidebar, or the settings nav) next to the content. Below
+   the breakpoint that does not fit, so the list column becomes an overlay drawer —
+   off-canvas by default, slid in over a scrim when NavigationService.MobileNavOpen
+   is set. The hamburger in the title bar toggles it; any navigation closes it (see
+   NavigationService.Notify). Everything here is a phone-only override — the desktop
+   heads never cross the breakpoint, so their layout is untouched.
+   ────────────────────────────────────────────────────────────────────────────── */
+
+/* Off unless the media query below turns them on: on the desktop heads the drawer
+   affordances have no reason to exist. */
+.mobile-nav-toggle { display: none; }
+.mobile-nav-scrim  { display: none; }
+
+/* The toggle must stay clickable even though the title bar is a window drag handle. */
+.mobile-nav-toggle { -webkit-app-region: no-drag; }
+
+@media (max-width: 768px) {
+  /* ── Title bar ─────────────────────────────────────────────────────────── */
+  .title-bar {
+    padding-left: max(var(--space-4), env(safe-area-inset-left));
+    padding-right: max(var(--space-4), env(safe-area-inset-right));
+    padding-top: env(safe-area-inset-top);
+    height: auto;
+    min-height: var(--titlebar-height);
+    gap: var(--space-2);
+    /* Above the drawer and its scrim, so the toggle (now an ✕) stays tappable. */
+    z-index: 65;
+  }
+
+  .mobile-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-fg-secondary);
+    cursor: pointer;
+  }
+  .mobile-nav-toggle:hover { background: var(--color-bg-hover); color: var(--color-fg-primary); }
+  .mobile-nav-toggle:active { background: var(--color-bg-hover); }
+
+  /* Was absolutely centred against the whole bar — which is what put it under the
+     account menu on a narrow window. In flow now, centred in the space the toggle
+     and the account menu leave. */
+  .title-bar .tab-bar {
+    position: static;
+    transform: none;
+    left: auto;
+    flex: 1 1 auto;
+    justify-content: center;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .title-bar .tab-bar::-webkit-scrollbar { display: none; }
+
+  .title-bar .tab-btn {
+    padding: 6px 10px;
+    min-height: 34px;
+    flex-shrink: 0;
+  }
+
+  /* The account name never fits next to two or three tabs; the avatar alone still
+     opens the same menu. */
+  .session-btn-label { display: none; }
+  .session-btn { padding: 5px 8px; max-width: none; }
+
+  /* ── List column → overlay drawer ─────────────────────────────────────── */
+  .sidebar,
+  .assistant-sidebar,
+  .settings-nav {
+    position: fixed;
+    top: calc(var(--titlebar-height) + env(safe-area-inset-top));
+    left: 0;
+    bottom: 0;
+    width: min(84vw, 320px);
+    min-width: 0;
+    z-index: 60;
+    transform: translateX(-100%);
+    transition: transform 0.24s ease;
+    border-right: 1px solid var(--color-separator);
+    box-shadow: 12px 0 40px rgba(0, 0, 0, 0.32);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .app-shell.mobile-nav-open .sidebar,
+  .app-shell.mobile-nav-open .assistant-sidebar,
+  .app-shell.mobile-nav-open .settings-nav {
+    transform: none;
+  }
+
+  .mobile-nav-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.24s ease;
+  }
+  .app-shell.mobile-nav-open .mobile-nav-scrim {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* The settings screen is its own flex row inside .main-area; with the nav pulled
+     out of flow the content just needs to fill the width and lose the desktop gutter. */
+  .settings-content { padding: var(--space-7) var(--space-6); }
+  .setting-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+  .setting-row-label { min-width: 0; }
+  .setting-row-control { justify-content: flex-start; }
+  .setting-row-control .form-input,
+  .setting-row-control .form-select { max-width: none; width: 100%; }
+
+  /* ── Research ─────────────────────────────────────────────────────────── */
+  .research-header { padding: var(--space-6) var(--space-6) var(--space-5); }
+  .research-header-top { flex-direction: column; gap: var(--space-4); }
+  .research-actions { flex-wrap: wrap; width: 100%; }
+  .research-youtube-toggle { min-width: 0; width: 100%; max-width: none; }
+  .research-title { font-size: var(--text-title3); }
+
+  /* ── Assistant ────────────────────────────────────────────────────────── */
+  .assistant-header {
+    flex-wrap: wrap;
+    padding: var(--space-4) var(--space-6);
+    gap: var(--space-3);
+  }
+  .assistant-header-chips { flex-wrap: wrap; margin-left: 0; }
+  .assistant-messages { padding: var(--space-6); gap: var(--space-5); }
+  .assistant-bubble { max-width: 88%; }
+  .assistant-composer {
+    padding: var(--space-5) var(--space-6)
+             calc(var(--space-5) + env(safe-area-inset-bottom));
+  }
+
+  /* The project page's column cap is a desktop reading measure; on a phone it is the
+     whole width. The head wraps so the name keeps a usable line before the button. */
+  .assistant-project-head {
+    flex-wrap: wrap;
+    padding: var(--space-4) var(--space-6);
+  }
+  .assistant-project-name { flex-basis: 100%; }
+  .assistant-project-body {
+    max-width: 100%;
+    padding: var(--space-5) var(--space-6)
+             calc(var(--space-8) + env(safe-area-inset-bottom));
+    gap: var(--space-7);
+  }
+
+  /* ── Modals / sheets ──────────────────────────────────────────────────── */
+  .modal-backdrop { padding: var(--space-6); }
+  .modal-sheet {
+    min-width: 0;
+    max-width: 100%;
+    padding: var(--space-7);
+  }
+  .modal-panel { width: 100%; max-width: 100%; }
+
+  /* Pointer-anchored popovers (context menus, the quote pill) can be dropped near a
+     screen edge on a phone; let them shift back into view rather than clip. */
+  .zoom-anchored {
+    max-width: calc(100vw - var(--space-7));
+  }
+
+  /* ── Narration / podcast panel ────────────────────────────────────────── */
+
+  /* Six cells side by side is a research page's shape. On a phone — and worse, on a phone
+     inside a chat card, which is narrower still — it leaves each cell about fifty pixels:
+     a percentage and a Generate button neither readable nor hittable. The row label takes
+     its own full-width line instead, and the three lengths share the width beneath it, so
+     the matrix reads as two labelled rows of three rather than a squashed spreadsheet. */
+  .narration-matrix {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+  .narration-matrix-corner { display: none; }
+  .narration-matrix-rowlabel {
+    grid-column: 1 / -1;
+    padding: var(--space-2) 0 0;
+  }
+
+  /* Every millimetre of a cell is now text or button, so the padding comes in. */
+  .narration-card { padding: var(--space-3); min-height: 62px; }
+
+  /* "Újragenerálás" is a single unbreakable word about as wide as a third of a phone.
+     The cell gives it its whole width, and the ellipsis is only the last resort. */
+  .narration-card-actions { gap: var(--space-2); }
+  /* Doubled up to clear `.btn.btn-sm`, which sets the size these buttons are drawn at. */
+  .btn.narration-card-gen-btn {
+    justify-content: center;
+    gap: var(--space-2);
+    padding: 0 var(--space-2);
+    min-width: 0;
+    overflow: hidden;
+    font-size: 10px;
+  }
+  .narration-card-gen-btn span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .narration-card-play-btn { flex: 0 0 auto; }
+  .narration-card-cancel-btn { align-self: stretch; justify-content: center; }
+
+  /* Chunk count, time left and the stop button take their own line under the slot name
+     instead of crowding it out. */
+  .narration-run-strip-meta { flex-wrap: wrap; row-gap: var(--space-2); }
+
+  /* The seek row's desktop minimum is wider than the card it now sits in. */
+  .narration-seek {
+    min-width: 0;
+    flex: 1 1 100%;
+    grid-template-columns: 38px minmax(0, 1fr) 38px;
+  }
+  .narration-speed { width: 100%; }
+
+  /* The audio/research card head carries a name, a title, a state pill and a percentage;
+     on a phone the title gives way to a second line rather than vanishing into an ellipsis
+     before the first word. */
+  .assistant-tool-head { flex-wrap: wrap; row-gap: var(--space-1); }
+  .assistant-tool-summary { flex: 1 1 90px; min-width: 0; }
+}
+
+/* Very narrow: drop the tab labels to icons so the three tabs plus the toggle and
+   the account avatar all fit across the bar. The text stays in the DOM for a11y. */
+@media (max-width: 400px) {
+  .title-bar .tab-btn {
+    font-size: 0;
+    gap: 0;
+    padding: 6px 9px;
+  }
+  .title-bar .tab-btn svg { width: 16px; height: 16px; }
+}
+
+/* ── Auto-save indicator ──
+   There are no save buttons anywhere in the app: settings write themselves as they change.
+   This is the only thing that says so, so it sits above everything, in the top-right corner
+   under the title bar, and it is the same badge whichever page made the change. */
+.save-indicator {
+  position: fixed;
+  top: calc(var(--titlebar-height) + var(--space-4));
+  right: var(--space-7);
+  /* Above every overlay in the app, dialogs included: a setting changed inside a modal has to
+     report in the same corner as one changed on the page. It is pointer-events:none, so sitting
+     on top costs nothing. */
+  z-index: 1300;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-separator);
+  background: var(--color-bg-grouped);
+  box-shadow: var(--shadow-overlay);
+  font-size: var(--text-caption);
+  color: var(--color-fg-secondary);
+  pointer-events: none;
+  animation: save-indicator-in 140ms ease-out;
+}
+
+.save-indicator.is-saved { color: var(--color-done); }
+.save-indicator.is-error { color: var(--color-failed); }
+
+@keyframes save-indicator-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}

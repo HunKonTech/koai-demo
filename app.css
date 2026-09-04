@@ -1,0 +1,180 @@
+.status-bar-safe-area {
+    display: none;
+}
+
+/* The splash paints before Blazor has started, so it reads the same tokens the shell
+   does — appearance.js has already stamped data-theme by this point. Hardcoding the
+   dark values here would flash a dark splash at a light-mode user on every launch. */
+/* height:100%, not min-height:100vh — .app-shell resolves its own height against this
+   box, so it needs a definite one, and a vh floor here would re-impose the unzoomed
+   window height and push the shell's bottom off screen at large text sizes. */
+#app {
+    height: 100%;
+    background:
+        radial-gradient(circle at 50% 35%, rgba(0, 122, 255, 0.18), transparent 32rem),
+        var(--color-bg-window, #1c1c1e);
+}
+
+.koai-startup-loader {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    color: var(--color-fg-primary, rgba(255, 255, 255, 0.92));
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.koai-startup-mark {
+    position: relative;
+    width: 78px;
+    height: 78px;
+    display: grid;
+    place-items: center;
+}
+
+.koai-startup-mark::before,
+.koai-startup-mark::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid var(--color-separator, rgba(255, 255, 255, 0.16));
+}
+
+.koai-startup-mark::after {
+    inset: 9px;
+    border-top-color: rgba(0, 122, 255, 0.95);
+    border-right-color: rgba(94, 92, 230, 0.7);
+    animation: koai-startup-orbit 1.15s linear infinite;
+}
+
+.koai-startup-mark span {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #007aff;
+    box-shadow: 0 0 18px rgba(0, 122, 255, 0.75);
+    animation: koai-startup-pulse 1.2s ease-in-out infinite;
+}
+
+.koai-startup-mark span:nth-child(1) {
+    transform: translate(-18px, 10px);
+    animation-delay: 0s;
+}
+
+.koai-startup-mark span:nth-child(2) {
+    transform: translate(0, -16px);
+    animation-delay: 0.18s;
+}
+
+.koai-startup-mark span:nth-child(3) {
+    transform: translate(18px, 10px);
+    animation-delay: 0.36s;
+}
+
+.koai-startup-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.koai-startup-caption {
+    font-size: 13px;
+    color: var(--color-fg-secondary, rgba(255, 255, 255, 0.55));
+}
+
+@keyframes koai-startup-orbit {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes koai-startup-pulse {
+    0%, 100% {
+        opacity: 0.45;
+        scale: 0.78;
+    }
+
+    50% {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .koai-startup-mark::after,
+    .koai-startup-mark span {
+        animation-duration: 2.4s;
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    .status-bar-safe-area {
+        display: flex;
+        position: sticky;
+        top: 0;
+        height: env(safe-area-inset-top);
+        background-color: #f7f7f7;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .flex-column, .navbar-brand {
+        padding-left: env(safe-area-inset-left);
+    }
+}
+
+/* ── Demo-host-only chrome ────────────────────────────────────────────────────
+   Not part of the product UI: the badge and the boot-failure banner exist only in
+   the GitHub Pages demo, so they live here rather than in KOAI.Shared. */
+
+.koai-demo-badge {
+    position: fixed;
+    right: .75rem;
+    bottom: .75rem;
+    z-index: 2000;
+    display: flex;
+    gap: .45rem;
+    align-items: baseline;
+    padding: .35rem .7rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    background: rgba(20, 20, 22, .78);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    color: #f2f2f7;
+    font: 500 .72rem/1.2 -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    text-decoration: none;
+    opacity: .72;
+    transition: opacity .15s ease;
+}
+
+.koai-demo-badge:hover { opacity: 1; }
+.koai-demo-badge strong { font-weight: 700; letter-spacing: .02em; }
+.koai-demo-badge span { opacity: .8; }
+
+/* Narrow screens: the caption is the first thing worth dropping — the word "Demo"
+   alone still carries the message, and the pill stops covering the composer. */
+@media (max-width: 520px) {
+    .koai-demo-badge span { display: none; }
+}
+
+#blazor-error-ui {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3000;
+    padding: .8rem 1.2rem;
+    background: #ffe9a8;
+    color: #4a3600;
+    box-shadow: 0 -1px 6px rgba(0, 0, 0, .25);
+    font: 500 .85rem/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+#blazor-error-ui .dismiss { cursor: pointer; float: right; }
+#blazor-error-ui .reload { color: inherit; margin-left: .4rem; }

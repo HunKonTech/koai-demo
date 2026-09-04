@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>KOAI — UI demo</title>
+    <meta name="description" content="Interactive demo of the KOAI desktop interface. Sample data only — no real research runs." />
+    <!-- Rewritten at publish time to the Pages sub-path the channel is served from:
+         /koai-demo/ for the release build (build-and-release.yml), /koai-demo/dev/ for the
+         developer preview (developer-preview.yml). Leave it as "/" so `dotnet run` works
+         locally. -->
+    <base href="/koai-demo/dev/" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="_content/KOAI.Shared/css/koai.css" />
+    <link rel="icon" href="_content/KOAI.Shared/favicon.png" />
+    <!-- In <head>, not at the end of <body>: it stamps data-theme before the first paint,
+         so a light-mode user doesn't get a dark flash while settings load. -->
+    <script src="_content/KOAI.Shared/js/appearance.js"></script>
+</head>
+
+<body>
+
+    <div class="status-bar-safe-area"></div>
+
+    <div id="app">
+        <div class="koai-startup-loader" role="status" aria-live="polite" aria-label="Loading KOAI">
+            <div class="koai-startup-mark" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="koai-startup-title">KOAI</div>
+            <div class="koai-startup-caption">Loading demo workspace</div>
+        </div>
+    </div>
+
+    <!-- Blazor's own failure UI. Without it a boot error leaves the splash spinning forever. -->
+    <div id="blazor-error-ui">
+        Something went wrong. Reload the page to restart the demo.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+
+    <!-- Deliberately outside #app: it must stay legible even if the Blazor tree fails to
+         boot, and it is the only thing on the page telling a visitor the data is fake. -->
+    <a class="koai-demo-badge" href="https://github.com/HunKonTech/KOAI" target="_blank"
+       rel="noopener" title="build preview-v2026.09.04-build.190.1">
+        <strong>Demo</strong><span>sample data — nothing runs for real</span>
+    </a>
+
+    <script src="_content/KOAI.Shared/js/narration-player.js"></script>
+    <script src="_content/KOAI.Shared/js/embedded-browser-slot.js"></script>
+    <script src="_content/KOAI.Shared/js/directive-highlighter.js"></script>
+    <script src="_content/KOAI.Shared/js/log-autoscroll.js"></script>
+    <script src="_content/KOAI.Shared/js/assistant-quote.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+
+</body>
+
+</html>
